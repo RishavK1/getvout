@@ -149,22 +149,21 @@ img { display: block; max-width: 100%; }
 .project-index-item strong { font-size: 12px; font-weight: 550; }
 
 /* Capabilities and stack marquee */
-.technology-marquee { position: relative; overflow: hidden; margin-top: 88px; padding: 37px 0 28px; background: #20231f; color: var(--paper-light); }
-.technology-marquee::before { position: absolute; inset: 0; content: ""; background: radial-gradient(ellipse at 78% 0%, rgb(44 75 112 / 34%), transparent 46%); pointer-events: none; }
-.technology-marquee-heading { position: relative; z-index: 1; padding-inline: clamp(22px, 4vw, 54px); display: flex; align-items: baseline; justify-content: space-between; gap: 20px; }
-.technology-marquee-heading .eyebrow { color: var(--lime); }
-.technology-marquee-heading > p:last-child { margin: 0; color: #c4c8bf; font-size: 13px; }
-.marquee-lanes { position: relative; z-index: 1; margin-top: 24px; }
-.marquee-lane { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
-.marquee-lane + .marquee-lane { margin-top: 2px; }
+.technology-marquee { position: relative; overflow: hidden; margin-top: 76px; padding: 22px 0 17px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); color: var(--ink); }
+.technology-marquee-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; }
+.technology-marquee-heading .eyebrow { color: var(--muted); }
+.technology-marquee-heading > p:last-child { margin: 0; color: var(--muted); font-size: 14px; }
+.marquee-lanes { margin-top: 17px; }
+.marquee-lane { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+.marquee-lane + .marquee-lane { border-top: 1px solid rgb(217 215 207 / 72%); }
 .marquee-track { width: max-content; display: flex; animation: marquee-drift 48s linear infinite; will-change: transform; }
 .marquee-lane--reverse .marquee-track { animation-direction: reverse; animation-duration: 56s; }
 .technology-marquee:hover .marquee-track, .technology-marquee:focus-within .marquee-track { animation-play-state: paused; }
 .marquee-sequence { display: flex; flex: none; align-items: center; }
-.marquee-item { min-height: 54px; padding: 0 27px; display: inline-flex; flex: none; align-items: center; gap: 12px; border-right: 1px solid #4b5048; color: #f4f4ed; font-size: clamp(16px, 1.65vw, 21px); font-weight: 450; letter-spacing: -.035em; white-space: nowrap; }
-.marquee-item i { color: #a2ab87; font-family: "Instrument Serif", Georgia, serif; font-size: 14px; font-style: italic; }
-.marquee-item b { color: var(--lime); font-size: 13px; font-weight: 400; }
-.marquee-lane--reverse .marquee-item b { color: #8eacf8; }
+.marquee-item { min-height: 51px; padding: 0 25px; display: inline-flex; flex: none; align-items: center; gap: 11px; border-right: 1px solid rgb(217 215 207 / 82%); color: var(--ink-soft); font-size: clamp(16px, 1.65vw, 20px); font-weight: 450; letter-spacing: -.035em; white-space: nowrap; }
+.marquee-item i { color: #85867e; font-family: "Instrument Serif", Georgia, serif; font-size: 14px; font-style: italic; }
+.marquee-item b { color: var(--blue); font-size: 12px; font-weight: 500; }
+.marquee-lane--reverse .marquee-item b { color: #8a9c4a; }
 .text-link { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-size: 12px; font-weight: 600; white-space: nowrap; }
 .text-link svg { font-size: 15px; transition: transform .2s ease; }
 .text-link:hover { color: var(--blue); }
@@ -330,10 +329,10 @@ img { display: block; max-width: 100%; }
   .project-showcase-bottom { padding-top: 26px; }
   .project-carousel-controls button { width: 42px; height: 42px; }
   .project-index-list { margin-inline: -20px; padding-inline: 20px; }
-  .technology-marquee { margin-top: 62px; padding-top: 27px; }
+  .technology-marquee { margin-top: 55px; padding-block: 19px 12px; }
   .technology-marquee-heading { display: block; }
-  .technology-marquee-heading > p:last-child { margin-top: 9px; font-size: 12px; }
-  .marquee-lanes { margin-top: 17px; }
+  .technology-marquee-heading > p:last-child { margin-top: 8px; font-size: 13px; }
+  .marquee-lanes { margin-top: 13px; }
   .marquee-item { min-height: 47px; padding-inline: 18px; gap: 9px; }
   .services-heading { margin-bottom: 39px; }
   .service-row { min-height: 0; padding-block: 22px; grid-template-columns: 27px 44px 1fr 20px; gap: 10px; }
