@@ -266,6 +266,7 @@ img { display: block; max-width: 100%; }
 .footer-links > div { display: flex; flex-direction: column; align-items: start; gap: 11px; }
 .footer-links .eyebrow { margin-bottom: 4px; color: #b0b4aa; font-size: 10px; }
 .footer-links a { display: inline-flex; align-items: center; gap: 5px; color: #dbddd7; text-decoration: none; font-size: 12px; }
+.footer-links a.footer-email { color: var(--lime); font-size: 16px; white-space: nowrap; }
 .footer-links a:hover { color: var(--lime); }
 .footer-links a svg { font-size: 12px; }
 .footer-bottom { min-height: 55px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid #454942; color: #b0b4aa; font-size: 10px; }
@@ -371,6 +372,7 @@ img { display: block; max-width: 100%; }
   .contact-orbit svg { font-size: 9px; }
   .footer-main { min-height: unset; padding-block: 34px; display: block; }
   .footer-links { gap: clamp(50px, 18vw, 120px); margin-top: 35px; }
+  .footer-links a.footer-email { font-size: 14px; }
   .footer-bottom { min-height: 65px; flex-wrap: wrap; justify-content: space-between; gap: 8px 15px; padding-block: 13px; font-size: 9px; }
   .footer-bottom > span:nth-child(2) { order: 3; flex-basis: 100%; }
 }
@@ -382,6 +384,7 @@ img { display: block; max-width: 100%; }
   .hero-capabilities { gap: 7px; font-size: 9px; }
   .project-meta { display: block; }
   .project-link { margin-top: 12px; }
+  .footer-links a.footer-email { font-size: 13px; }
   .contact-orbit { top: 81px; }
 }
 

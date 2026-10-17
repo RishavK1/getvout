@@ -538,7 +538,7 @@ export function App() {
           </div>
           <div className="footer-links">
             <div><p className="eyebrow">Explore</p><a href="#work">Work</a><a href="#services">What we do</a><a href="#approach">Approach</a><a href="#about">Studio</a></div>
-            <div><p className="eyebrow">Contact</p><a href="mailto:helo@getvout.com">Email <ArrowUpRight aria-hidden="true" /></a></div>
+            <div><p className="eyebrow">Contact</p><a className="footer-email" href="mailto:helo@getvout.com">helo@getvout.com <ArrowUpRight aria-hidden="true" /></a></div>
           </div>
         </div>
         <div className="footer-bottom section-shell"><span>© {new Date().getFullYear()} getvout.com</span><span>Independent by nature. Connected everywhere.</span><a href="#top">Back to top <ArrowUpRight aria-hidden="true" /></a></div>
