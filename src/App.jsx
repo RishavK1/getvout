@@ -475,9 +475,9 @@ export function App() {
             </div>
           </div>
           <div className="ai-visual" data-reveal>
-            <img src="/images/bloom.webp" alt="Bloom AI product homepage with a conversational prompt for building applications" loading="lazy" />
+            <img src="/images/applied-ai-sculpture.webp" alt="Cobalt glass forms connected around a luminous lime core, representing thoughtful AI systems" loading="lazy" />
             <div className="ai-visual-label"><Sparkle weight="fill" aria-hidden="true" /><span>AI, put to work.</span></div>
-            <span className="ai-visual-index">Bloom <span>↗</span></span>
+            <span className="ai-visual-index">GETVOUT / APPLIED AI</span>
           </div>
         </section>
 
