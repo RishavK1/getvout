@@ -68,7 +68,7 @@ const projects = [
   },
   {
     number: "07",
-    name: "MERN Job Portal",
+    name: "Insider Job",
     category: "Recruitment · Full-stack platform · Product engineering",
     description: "A feature-rich hiring platform with separate recruiter and candidate experiences, practical filters, and production-ready foundations.",
     image: "/images/job-portal-professional.jpg",
@@ -113,7 +113,7 @@ const projects = [
   },
   {
     number: "12",
-    name: "Airbnb Clone",
+    name: "Stayfinder",
     category: "Travel · Marketplace · Full-stack development",
     description: "A full-stack rental discovery experience with listing pages and a familiar booking journey for travelers.",
     image: "/images/airbnb-coastal-stay.jpg",
