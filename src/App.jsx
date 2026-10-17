@@ -449,15 +449,15 @@ export function App() {
         <section className="proof-section" aria-labelledby="proof-title">
           <div className="proof-inner section-shell" data-reveal>
             <div className="proof-heading">
-              <p className="eyebrow section-index">03 <span>/</span> The work, in numbers</p>
+              <p className="eyebrow section-index">03 <span>/</span> The studio, in numbers</p>
               <h2 id="proof-title">A little proof<br />goes a long way.</h2>
-              <p>Measured outcomes from digital products and experiences built to perform.</p>
+              <p>A snapshot of the selected work, capabilities, and process behind every getvout engagement.</p>
             </div>
             <div className="proof-stats">
-              <div className="proof-stat"><span className="stat-value">16<span>+</span></span><span className="stat-label">Applications shipped</span></div>
-              <div className="proof-stat"><span className="stat-value">85<span>%</span></span><span className="stat-label">Lead quality improvement<br />for Rudra Infocom</span></div>
-              <div className="proof-stat"><span className="stat-value">40<span>%</span></span><span className="stat-label">More qualified inquiries<br />for Perpetual Power</span></div>
-              <div className="proof-stat"><span className="stat-value">100<span>+</span></span><span className="stat-label">Production issues<br />resolved</span></div>
+              <div className="proof-stat"><span className="stat-value">{String(projects.length).padStart(2, "0")}</span><span className="stat-label">Projects featured<br />in selected work</span></div>
+              <div className="proof-stat"><span className="stat-value">{String(services.length).padStart(2, "0")}</span><span className="stat-label">Connected capabilities<br />across web, AI, and products</span></div>
+              <div className="proof-stat"><span className="stat-value">{String(steps.length).padStart(2, "0")}</span><span className="stat-label">Clear steps from first brief<br />to launch</span></div>
+              <div className="proof-stat"><span className="stat-value">01</span><span className="stat-label">Studio from strategy<br />through engineering</span></div>
             </div>
           </div>
         </section>
