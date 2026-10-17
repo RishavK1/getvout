@@ -522,7 +522,7 @@ export function App() {
               <h2 id="contact-title">Have a good<br />one in mind?</h2>
               <div className="contact-cta-wrap">
                 <p>Tell us what you’re working on. We’ll help you find the right way forward.</p>
-                <a className="button button-lime" href="mailto:rishavkamboj75@gmail.com?subject=Project%20enquiry%20for%20getvout.com">Tell us about it <ArrowUpRight aria-hidden="true" /></a>
+                <a className="button button-lime" href="mailto:helo@getvout.com?subject=Project%20enquiry%20for%20getvout.com">Tell us about it <ArrowUpRight aria-hidden="true" /></a>
               </div>
             </div>
             <div className="contact-orbit" aria-hidden="true"><span>GOOD IDEAS</span><ArrowUpRight /></div>
@@ -538,7 +538,7 @@ export function App() {
           </div>
           <div className="footer-links">
             <div><p className="eyebrow">Explore</p><a href="#work">Work</a><a href="#services">What we do</a><a href="#approach">Approach</a><a href="#about">Studio</a></div>
-            <div><p className="eyebrow">Contact</p><a href="mailto:rishavkamboj75@gmail.com">Email <ArrowUpRight aria-hidden="true" /></a></div>
+            <div><p className="eyebrow">Contact</p><a href="mailto:helo@getvout.com">Email <ArrowUpRight aria-hidden="true" /></a></div>
           </div>
         </div>
         <div className="footer-bottom section-shell"><span>© {new Date().getFullYear()} getvout.com</span><span>Independent by nature. Connected everywhere.</span><a href="#top">Back to top <ArrowUpRight aria-hidden="true" /></a></div>
