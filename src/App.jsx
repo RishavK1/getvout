@@ -32,6 +32,42 @@ const projects = [
   },
   {
     number: "03",
+    name: "PixelorCode",
+    category: "Digital studio · Strategy · Web development",
+    description: "A modern web studio experience built to turn thoughtful strategy and performance-led development into measurable growth.",
+    image: "/images/pixelorcode.jpg",
+    alt: "PixelorCode digital studio website shown across its homepage and service sections",
+    className: "project-card--pixelorcode",
+  },
+  {
+    number: "04",
+    name: "Perpetual Power Services",
+    category: "Energy · Corporate website · Growth",
+    description: "A sharper online experience for a renewable energy and power solutions company, designed to build trust and attract qualified inquiries.",
+    image: "/images/perpetual-power.webp",
+    alt: "Perpetual Power Services website featuring renewable energy services",
+    className: "project-card--power",
+  },
+  {
+    number: "05",
+    name: "MERN Job Portal",
+    category: "Recruitment · Full-stack platform · Product engineering",
+    description: "A feature-rich hiring platform with separate recruiter and candidate experiences, practical filters, and production-ready foundations.",
+    image: "/images/job-portal.jpg",
+    alt: "MERN job portal interface for job seekers and recruiters",
+    className: "project-card--job-portal",
+  },
+  {
+    number: "06",
+    name: "Rose Cafe",
+    category: "Hospitality · Brand website · Reservations",
+    description: "A warm, floral-led cafe experience that brings the atmosphere of the space online and makes it easy to plan a visit.",
+    image: "/images/rose-cafe.jpg",
+    alt: "Rose Cafe website with a soft pastel palette and floral visual identity",
+    className: "project-card--rose-cafe",
+  },
+  {
+    number: "07",
     name: "Rudra Infocom",
     category: "B2B · IT & telecom · Lead generation",
     description: "A clearer digital presence for a telecom solutions business, built to improve lead quality.",
@@ -40,13 +76,40 @@ const projects = [
     className: "project-card--rudra",
   },
   {
-    number: "04",
-    name: "Perpetual Power",
-    category: "Energy · Corporate website · Growth",
-    description: "A sharper online experience for a renewable energy and power solutions company.",
-    image: "/images/perpetual-power.webp",
-    alt: "Perpetual Power Services website featuring renewable energy services",
-    className: "project-card--power",
+    number: "08",
+    name: "Ruvira Atelier",
+    category: "Luxury retail · E-commerce · Brand experience",
+    description: "A refined jewelry storefront that pairs an elevated visual identity with a considered path from product discovery to inquiry.",
+    image: "/images/ruvira-atelier.jpg",
+    alt: "Ruvira Atelier luxury jewelry ecommerce website",
+    className: "project-card--ruvira",
+  },
+  {
+    number: "09",
+    name: "Mema Play World",
+    category: "Play spaces · Product catalog · Lead generation",
+    description: "A playful, informative catalog that helps families explore equipment, understand safety details, and find the right play space.",
+    image: "/images/mema-playworld.jpg",
+    alt: "Mema Play World playground equipment catalog website",
+    className: "project-card--mema",
+  },
+  {
+    number: "10",
+    name: "Airbnb Clone",
+    category: "Travel · Marketplace · Full-stack development",
+    description: "A full-stack rental discovery experience with listing pages and a familiar booking journey for travelers.",
+    image: "/images/airbnb-rentals.jpg",
+    alt: "Vacation rental marketplace listing interface",
+    className: "project-card--airbnb",
+  },
+  {
+    number: "11",
+    name: "Car Rental Website",
+    category: "Mobility · Booking platform · Full-stack development",
+    description: "A car rental experience with focused vehicle discovery, a streamlined booking flow, and tools for managing inventory.",
+    image: "/images/car-rental.jpg",
+    alt: "Car rental booking website with vehicle search and rental details",
+    className: "project-card--car-rental",
   },
 ];
 
@@ -146,7 +209,7 @@ function ProjectCard({ project }) {
         >
           getvout
         </span>
-        <span className="project-number">{project.number} / 04</span>
+        <span className="project-number">{project.number} / 11</span>
         <span className="project-open" aria-hidden="true">+</span>
       </div>
       <div className="project-meta">
