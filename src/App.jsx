@@ -477,7 +477,7 @@ export function App() {
           <div className="ai-visual" data-reveal>
             <img src="/images/bloom.webp" alt="Bloom AI product homepage with a conversational prompt for building applications" loading="lazy" />
             <div className="ai-visual-label"><Sparkle weight="fill" aria-hidden="true" /><span>AI, put to work.</span></div>
-            <span className="ai-visual-index">TALSCOUT.AI <span>↗</span></span>
+            <span className="ai-visual-index">Bloom <span>↗</span></span>
           </div>
         </section>
 
