@@ -181,45 +181,157 @@ function useScrollEffects() {
   }, []);
 }
 
-function ProjectCard({ project }) {
-  const cardRef = useRef(null);
-  const [pointer, setPointer] = useState({ x: 0, y: 0, active: false });
+function OpeningCurtain() {
+  const [opening, setOpening] = useState(true);
+  const [visible, setVisible] = useState(true);
 
-  const movePointer = (event) => {
-    if (window.matchMedia("(hover: none)").matches) return;
-    const rect = cardRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    setPointer({ x: event.clientX - rect.left, y: event.clientY - rect.top, active: true });
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVisible(false);
+      return undefined;
+    }
+    const startOpening = window.setTimeout(() => setOpening(false), 160);
+    const finishOpening = window.setTimeout(() => setVisible(false), 1320);
+    return () => {
+      window.clearTimeout(startOpening);
+      window.clearTimeout(finishOpening);
+    };
+  }, []);
+
+  if (!visible) return null;
+
+  return (
+    <div className={`site-intro${opening ? "" : " is-opening"}`}>
+      <div className="site-intro-door site-intro-door--left" aria-hidden="true" />
+      <div className="site-intro-door site-intro-door--right" aria-hidden="true" />
+      <div className="site-intro-brand" aria-hidden="true">
+        <span className="site-intro-mark">g</span>
+        <span>getvout<span>.</span></span>
+        <small>Independent digital studio</small>
+      </div>
+      <button className="site-intro-skip" type="button" onClick={() => setVisible(false)}>Skip intro</button>
+      <span className="site-intro-seam" aria-hidden="true" />
+    </div>
+  );
+}
+
+function ProjectCarousel({ items }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [pointer, setPointer] = useState({ x: 0, y: 0, active: false });
+  const dragStart = useRef(null);
+  const indexRailRef = useRef(null);
+  const activeIndexRef = useRef(null);
+  const activeProject = items[activeIndex];
+
+  useEffect(() => {
+    const rail = indexRailRef.current;
+    const activeButton = activeIndexRef.current;
+    if (!rail || !activeButton) return;
+    const left = activeButton.offsetLeft - rail.offsetLeft - (rail.clientWidth - activeButton.clientWidth) / 2;
+    rail.scrollTo({ left, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+  }, [activeIndex]);
+
+  const selectProject = (nextIndex) => {
+    setActiveIndex((nextIndex + items.length) % items.length);
+    setPointer((current) => ({ ...current, active: false }));
+  };
+  const moveProject = (direction) => selectProject(activeIndex + direction);
+  const handleKeyDown = (event) => {
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      moveProject(1);
+    } else if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      moveProject(-1);
+    }
+  };
+  const handlePointerMove = (event) => {
+    if (event.pointerType !== "mouse") return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    setPointer({ x: event.clientX - bounds.left, y: event.clientY - bounds.top, active: true });
+  };
+  const handlePointerUp = (event) => {
+    if (dragStart.current === null) return;
+    const distance = event.clientX - dragStart.current;
+    if (Math.abs(distance) > 48) moveProject(distance < 0 ? 1 : -1);
+    dragStart.current = null;
   };
 
   return (
-    <article className={`project-card ${project.className}`} data-reveal>
-      <div
-        ref={cardRef}
-        className="project-image-link"
-        onPointerMove={movePointer}
-        onPointerLeave={() => setPointer((current) => ({ ...current, active: false }))}
-      >
-        <img src={project.image} alt={project.alt} loading="lazy" />
-        <span className="project-image-shade" aria-hidden="true" />
-        <span
-          className={`project-cursor${pointer.active ? " is-active" : ""}`}
-          style={{ left: pointer.x, top: pointer.y }}
-          aria-hidden="true"
+    <div className="project-carousel" role="region" aria-roledescription="carousel" aria-label="Selected projects" tabIndex={0} onKeyDown={handleKeyDown} data-reveal>
+      <div className="project-showcase">
+        <div
+          className={`project-showcase-visual ${activeProject.className}`}
+          onPointerDown={(event) => { dragStart.current = event.clientX; }}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={() => { dragStart.current = null; }}
+          onPointerLeave={() => setPointer((current) => ({ ...current, active: false }))}
         >
-          getvout
-        </span>
-        <span className="project-number">{project.number} / 11</span>
-        <span className="project-open" aria-hidden="true">+</span>
+          <img key={activeProject.number} src={activeProject.image} alt={activeProject.alt} draggable="false" fetchPriority={activeIndex === 0 ? "high" : "auto"} />
+          <span className="project-showcase-shade" aria-hidden="true" />
+          <div className="project-showcase-overline"><span>GETVOUT / SELECTED WORK</span><span>{activeProject.number} — {String(items.length).padStart(2, "0")}</span></div>
+          <span className={`project-cursor${pointer.active ? " is-active" : ""}`} style={{ left: pointer.x, top: pointer.y }} aria-hidden="true">DRAG<br />TO EXPLORE</span>
+        </div>
+
+        <article className="project-showcase-copy" key={activeProject.number} role="group" aria-roledescription="slide" aria-label={`${activeIndex + 1} of ${items.length}: ${activeProject.name}`} aria-live="polite">
+          <p className="eyebrow project-category">{activeProject.category}</p>
+          <h3>{activeProject.name}</h3>
+          <p className="project-description">{activeProject.description}</p>
+          <div className="project-showcase-bottom">
+            <div className="project-showcase-count"><span>PROJECT</span><strong>{activeProject.number}</strong><span>/ {String(items.length).padStart(2, "0")}</span></div>
+            <div className="project-carousel-controls">
+              <button type="button" aria-label={`Previous project: ${items[(activeIndex - 1 + items.length) % items.length].name}`} onClick={() => moveProject(-1)}><ArrowRight className="project-arrow-back" aria-hidden="true" /></button>
+              <button type="button" aria-label={`Next project: ${items[(activeIndex + 1) % items.length].name}`} onClick={() => moveProject(1)}><ArrowRight aria-hidden="true" /></button>
+            </div>
+          </div>
+        </article>
       </div>
-      <div className="project-meta">
-        <div>
-          <p className="eyebrow project-category">{project.category}</p>
-          <h3>{project.name}</h3>
-          <p className="project-description">{project.description}</p>
+
+      <div className="project-carousel-index">
+        <div className="project-carousel-index-heading"><span className="eyebrow">Explore the work</span><span>{String(activeIndex + 1).padStart(2, "0")} <i>/</i> {String(items.length).padStart(2, "0")}</span></div>
+        <div className="project-carousel-progress" role="progressbar" aria-label="Project carousel position" aria-valuemin="1" aria-valuemax={items.length} aria-valuenow={activeIndex + 1}>
+          <span style={{ transform: `scaleX(${(activeIndex + 1) / items.length})` }} />
+        </div>
+        <div className="project-index-list" aria-label="Choose a project" ref={indexRailRef}>
+          {items.map((project, index) => (
+            <button ref={index === activeIndex ? activeIndexRef : null} className={`project-index-item${index === activeIndex ? " is-active" : ""}`} key={project.number} type="button" aria-label={`Show project ${project.number}: ${project.name}`} aria-pressed={index === activeIndex} onClick={() => selectProject(index)}>
+              <span>{project.number}</span>{index === activeIndex && <strong>{project.name}</strong>}
+            </button>
+          ))}
         </div>
       </div>
-    </article>
+    </div>
+  );
+}
+
+const technologyItems = ["React", "Next.js", "Vercel", "Node.js", "Python", "OpenAI", "Anthropic", "PostgreSQL", "Supabase", "MCP"];
+const capabilityItems = ["Web & app development", "AI-powered solutions", "MCP integrations", "AI agents", "Workflow automation", "API integrations", "SaaS products"];
+
+function MarqueeLane({ items, direction, laneLabel }) {
+  return (
+    <div className={`marquee-lane marquee-lane--${direction}`} role="group" aria-label={laneLabel}>
+      <div className="marquee-track" aria-hidden="true">
+        {[0, 1].map((copy) => (
+          <div className="marquee-sequence" key={copy}>
+            {items.map((item, index) => <span className="marquee-item" key={`${copy}-${item}`}><i>{String(index + 1).padStart(2, "0")}</i>{item}<b aria-hidden="true">✳</b></span>)}
+          </div>
+        ))}
+      </div>
+      <span className="sr-only">{items.join(", ")}</span>
+    </div>
+  );
+}
+
+function TechnologyMarquee() {
+  return (
+    <div className="technology-marquee" data-reveal>
+      <div className="technology-marquee-heading"><p className="eyebrow">One studio. The whole stack.</p><p>Ideas move from first sketch to working software.</p></div>
+      <div className="marquee-lanes">
+        <MarqueeLane items={technologyItems} direction="forward" laneLabel="Technologies we work with" />
+        <MarqueeLane items={capabilityItems} direction="reverse" laneLabel="Our digital capabilities" />
+      </div>
+    </div>
   );
 }
 
@@ -231,6 +343,7 @@ export function App() {
 
   return (
     <>
+      <OpeningCurtain />
       <a className="skip-link" href="#main">Skip to content</a>
       <div className="scroll-progress" aria-hidden="true" />
       <header className="site-header">
@@ -290,9 +403,8 @@ export function App() {
             </div>
             <p className="section-intro">A selection of digital products and experiences, each shaped around a real need and built to work in the real world.</p>
           </div>
-          <div className="project-grid">
-            {projects.map((project) => <ProjectCard key={project.number} project={project} />)}
-          </div>
+          <ProjectCarousel items={projects} />
+          <TechnologyMarquee />
         </section>
 
         <section className="services-section section-shell section-space" id="services" aria-labelledby="services-title">
