@@ -451,13 +451,12 @@ export function App() {
             <div className="proof-heading">
               <p className="eyebrow section-index">03 <span>/</span> The studio, in numbers</p>
               <h2 id="proof-title">A little proof<br />goes a long way.</h2>
-              <p>A snapshot of the selected work, capabilities, and process behind every getvout engagement.</p>
+              <p>Good work is built on happy clients, clear communication, and a standard we hold ourselves to.</p>
             </div>
             <div className="proof-stats">
-              <div className="proof-stat"><span className="stat-value">{String(projects.length).padStart(2, "0")}</span><span className="stat-label">Projects featured<br />in selected work</span></div>
-              <div className="proof-stat"><span className="stat-value">{String(services.length).padStart(2, "0")}</span><span className="stat-label">Connected capabilities<br />across web, AI, and products</span></div>
-              <div className="proof-stat"><span className="stat-value">{String(steps.length).padStart(2, "0")}</span><span className="stat-label">Clear steps from first brief<br />to launch</span></div>
-              <div className="proof-stat"><span className="stat-value">01</span><span className="stat-label">Studio from strategy<br />through engineering</span></div>
+              <div className="proof-stat"><span className="stat-value">20<span>+</span></span><span className="stat-label">Happy clients</span></div>
+              <div className="proof-stat"><span className="stat-value">24<span>h</span></span><span className="stat-label">Response time for new enquiries</span></div>
+              <div className="proof-stat"><span className="stat-value">100<span>%</span></span><span className="stat-label">Client satisfaction</span></div>
             </div>
           </div>
         </section>
