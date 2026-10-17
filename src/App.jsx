@@ -34,6 +34,16 @@ const projects = [
   },
   {
     number: "03",
+    name: "Hira Dhan Builders",
+    url: "https://hiradhanbuilders.com/",
+    category: "Real estate · Luxury homes · Brand experience",
+    description: "A premium digital presence for a real-estate developer, presenting its homes with a clear sense of place, quality, and trust.",
+    image: "/images/hiradhan-builders.jpg",
+    alt: "Contemporary luxury residence with stone, glass, and landscaped grounds at golden hour",
+    className: "project-card--hiradhan",
+  },
+  {
+    number: "04",
     name: "TalScout.ai",
     url: "https://talscout.rishavkamboj.online/",
     category: "AI SaaS · Product design · Engineering",
@@ -43,7 +53,7 @@ const projects = [
     className: "project-card--talscout",
   },
   {
-    number: "04",
+    number: "05",
     name: "Bloom",
     url: "https://bloom.rishavkamboj.online/",
     category: "AI product · SaaS · Next.js",
@@ -53,7 +63,7 @@ const projects = [
     className: "project-card--bloom",
   },
   {
-    number: "05",
+    number: "06",
     name: "PixelorCode",
     category: "Digital studio · Strategy · Web development",
     description: "A modern web studio experience built to turn thoughtful strategy and performance-led development into measurable growth.",
@@ -62,7 +72,27 @@ const projects = [
     className: "project-card--pixelorcode",
   },
   {
-    number: "06",
+    number: "07",
+    name: "DC Classes",
+    url: "https://dc-classes.vercel.app/",
+    category: "Education · Coaching · Learning",
+    description: "An approachable digital home for a coaching institute, helping students explore its classes and find the right next step.",
+    image: "/images/dc-classes.jpg",
+    alt: "Students attending a focused coaching class in a bright, modern classroom",
+    className: "project-card--dc-classes",
+  },
+  {
+    number: "08",
+    name: "Rana Academy",
+    url: "https://rana-academy.vercel.app/",
+    category: "Education · Academy · Student learning",
+    description: "A welcoming academy experience that makes learning programs and ways to connect easy for students and families to explore.",
+    image: "/images/rana-academy.jpg",
+    alt: "An instructor guiding a small group of students through a collaborative study session",
+    className: "project-card--rana-academy",
+  },
+  {
+    number: "09",
     name: "Perpetual Power Services",
     category: "Energy · Corporate website · Growth",
     description: "A sharper online experience for a renewable energy and power solutions company, designed to build trust and attract qualified inquiries.",
@@ -71,7 +101,7 @@ const projects = [
     className: "project-card--power",
   },
   {
-    number: "07",
+    number: "10",
     name: "Insider Job",
     category: "Recruitment · Full-stack platform · Product engineering",
     description: "A feature-rich hiring platform with separate recruiter and candidate experiences, practical filters, and production-ready foundations.",
@@ -80,7 +110,7 @@ const projects = [
     className: "project-card--job-portal",
   },
   {
-    number: "08",
+    number: "11",
     name: "Rose Cafe",
     url: "https://rose-petal-scroll.vercel.app/",
     category: "Hospitality · Brand website · Reservations",
@@ -90,7 +120,7 @@ const projects = [
     className: "project-card--rose-cafe",
   },
   {
-    number: "09",
+    number: "12",
     name: "Rudra Infocom",
     url: "https://rudrainfo.co.in/",
     category: "B2B · IT & telecom · Lead generation",
@@ -100,7 +130,7 @@ const projects = [
     className: "project-card--rudra",
   },
   {
-    number: "10",
+    number: "13",
     name: "Ruvira Atelier",
     category: "Luxury retail · E-commerce · Brand experience",
     description: "A refined jewelry storefront that pairs an elevated visual identity with a considered path from product discovery to inquiry.",
@@ -109,7 +139,7 @@ const projects = [
     className: "project-card--ruvira",
   },
   {
-    number: "11",
+    number: "14",
     name: "Mema Play World",
     category: "Play spaces · Product catalog · Lead generation",
     description: "A playful, informative catalog that helps families explore equipment, understand safety details, and find the right play space.",
@@ -118,7 +148,7 @@ const projects = [
     className: "project-card--mema",
   },
   {
-    number: "12",
+    number: "15",
     name: "Stayfinder",
     category: "Travel · Marketplace · Full-stack development",
     description: "A full-stack rental discovery experience with listing pages and a familiar booking journey for travelers.",
@@ -127,7 +157,7 @@ const projects = [
     className: "project-card--airbnb",
   },
   {
-    number: "13",
+    number: "16",
     name: "Car Rental Website",
     category: "Mobility · Booking platform · Full-stack development",
     description: "A car rental experience with focused vehicle discovery, a streamlined booking flow, and tools for managing inventory.",
