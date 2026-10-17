@@ -382,6 +382,7 @@ img { display: block; max-width: 100%; }
   .hero h1 { font-size: 59px; }
   .hero-kicker { font-size: 8px; }
   .hero-capabilities { gap: 7px; font-size: 9px; }
+  .project-index-list { margin-inline: -16px; padding-inline: 16px; }
   .project-meta { display: block; }
   .project-link { margin-top: 12px; }
   .footer-links a.footer-email { font-size: 13px; }
