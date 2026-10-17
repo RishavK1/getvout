@@ -15,6 +15,7 @@ const projects = [
   {
     number: "01",
     name: "TalScout.ai",
+    url: "https://talscout.rishavkamboj.online/",
     category: "AI SaaS · Product design · Engineering",
     description: "Two AI engines that turn prospecting and talent search into one clear workflow.",
     image: "/images/talscout.webp",
@@ -24,6 +25,7 @@ const projects = [
   {
     number: "02",
     name: "Bloom",
+    url: "https://bloom.rishavkamboj.online/",
     category: "AI product · SaaS · Next.js",
     description: "A conversational AI app builder that turns an idea into a working application.",
     image: "/images/bloom.webp",
@@ -33,6 +35,7 @@ const projects = [
   {
     number: "03",
     name: "Lavisha Glow & Glam",
+    url: "https://lavishaglowandglam.shop/",
     category: "Beauty · Salon website · Brand experience",
     description: "A polished digital home for a beauty studio, bringing its services and bridal packages together in a clear, welcoming experience.",
     image: "/images/lavisha-glow-glam.jpg",
@@ -42,6 +45,7 @@ const projects = [
   {
     number: "04",
     name: "Jac Creation",
+    url: "https://jac-creation-jet.vercel.app/",
     category: "Architecture · Studio website · Editorial design",
     description: "An architecture-focused web experience built around considered imagery, clear project storytelling, and a calm editorial feel.",
     image: "/images/jac-creation.jpg",
@@ -78,6 +82,7 @@ const projects = [
   {
     number: "08",
     name: "Rose Cafe",
+    url: "https://rose-petal-scroll.vercel.app/",
     category: "Hospitality · Brand website · Reservations",
     description: "A warm, floral-led cafe experience that brings the atmosphere of the space online and makes it easy to plan a visit.",
     image: "/images/rose-cafe-editorial.jpg",
@@ -87,6 +92,7 @@ const projects = [
   {
     number: "09",
     name: "Rudra Infocom",
+    url: "https://rudrainfo.co.in/",
     category: "B2B · IT & telecom · Lead generation",
     description: "A clearer digital presence for a telecom solutions business, built to improve lead quality.",
     image: "/images/rudra-network.jpg",
@@ -296,6 +302,7 @@ function ProjectCarousel({ items }) {
           <p className="eyebrow project-category">{activeProject.category}</p>
           <h3>{activeProject.name}</h3>
           <p className="project-description">{activeProject.description}</p>
+          {activeProject.url && <a className="text-link project-link" href={activeProject.url} target="_blank" rel="noreferrer" aria-label={`Visit ${activeProject.name} website (opens in a new tab)`}>Visit live project <ArrowUpRight aria-hidden="true" /></a>}
           <div className="project-showcase-bottom">
             <div className="project-showcase-count"><span>PROJECT</span><strong>{activeProject.number}</strong><span>/ {String(items.length).padStart(2, "0")}</span></div>
             <div className="project-carousel-controls">
