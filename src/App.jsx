@@ -32,6 +32,24 @@ const projects = [
   },
   {
     number: "03",
+    name: "Lavisha Glow & Glam",
+    category: "Beauty · Salon website · Brand experience",
+    description: "A polished digital home for a beauty studio, bringing its services and bridal packages together in a clear, welcoming experience.",
+    image: "/images/lavisha-glow-glam.jpg",
+    alt: "Warm editorial beauty portrait with a softly lit salon interior, created as the Lavisha Glow & Glam project preview",
+    className: "project-card--lavisha",
+  },
+  {
+    number: "04",
+    name: "Jac Creation",
+    category: "Architecture · Studio website · Editorial design",
+    description: "An architecture-focused web experience built around considered imagery, clear project storytelling, and a calm editorial feel.",
+    image: "/images/jac-creation.jpg",
+    alt: "Contemporary stone residence in a landscaped courtyard, created as the Jac Creation project preview",
+    className: "project-card--jac-creation",
+  },
+  {
+    number: "05",
     name: "PixelorCode",
     category: "Digital studio · Strategy · Web development",
     description: "A modern web studio experience built to turn thoughtful strategy and performance-led development into measurable growth.",
@@ -40,7 +58,7 @@ const projects = [
     className: "project-card--pixelorcode",
   },
   {
-    number: "04",
+    number: "06",
     name: "Perpetual Power Services",
     category: "Energy · Corporate website · Growth",
     description: "A sharper online experience for a renewable energy and power solutions company, designed to build trust and attract qualified inquiries.",
@@ -49,7 +67,7 @@ const projects = [
     className: "project-card--power",
   },
   {
-    number: "05",
+    number: "07",
     name: "MERN Job Portal",
     category: "Recruitment · Full-stack platform · Product engineering",
     description: "A feature-rich hiring platform with separate recruiter and candidate experiences, practical filters, and production-ready foundations.",
@@ -58,7 +76,7 @@ const projects = [
     className: "project-card--job-portal",
   },
   {
-    number: "06",
+    number: "08",
     name: "Rose Cafe",
     category: "Hospitality · Brand website · Reservations",
     description: "A warm, floral-led cafe experience that brings the atmosphere of the space online and makes it easy to plan a visit.",
@@ -67,7 +85,7 @@ const projects = [
     className: "project-card--rose-cafe",
   },
   {
-    number: "07",
+    number: "09",
     name: "Rudra Infocom",
     category: "B2B · IT & telecom · Lead generation",
     description: "A clearer digital presence for a telecom solutions business, built to improve lead quality.",
@@ -76,7 +94,7 @@ const projects = [
     className: "project-card--rudra",
   },
   {
-    number: "08",
+    number: "10",
     name: "Ruvira Atelier",
     category: "Luxury retail · E-commerce · Brand experience",
     description: "A refined jewelry storefront that pairs an elevated visual identity with a considered path from product discovery to inquiry.",
@@ -85,7 +103,7 @@ const projects = [
     className: "project-card--ruvira",
   },
   {
-    number: "09",
+    number: "11",
     name: "Mema Play World",
     category: "Play spaces · Product catalog · Lead generation",
     description: "A playful, informative catalog that helps families explore equipment, understand safety details, and find the right play space.",
@@ -94,7 +112,7 @@ const projects = [
     className: "project-card--mema",
   },
   {
-    number: "10",
+    number: "12",
     name: "Airbnb Clone",
     category: "Travel · Marketplace · Full-stack development",
     description: "A full-stack rental discovery experience with listing pages and a familiar booking journey for travelers.",
@@ -103,7 +121,7 @@ const projects = [
     className: "project-card--airbnb",
   },
   {
-    number: "11",
+    number: "13",
     name: "Car Rental Website",
     category: "Mobility · Booking platform · Full-stack development",
     description: "A car rental experience with focused vehicle discovery, a streamlined booking flow, and tools for managing inventory.",
