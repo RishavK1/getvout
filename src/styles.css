@@ -174,8 +174,7 @@ img { display: block; max-width: 100%; }
 .services-section { border-top: 1px solid var(--rule); }
 .services-heading { margin-bottom: 62px; }
 .service-list { border-top: 1px solid #cbc9c0; }
-.service-row { min-height: 142px; position: relative; display: grid; grid-template-columns: 50px 70px minmax(200px, 1fr) minmax(170px, .7fr) 30px; align-items: center; gap: 17px; border-bottom: 1px solid #cbc9c0; transition: background-color .38s cubic-bezier(.2,.7,.2,1), box-shadow .38s cubic-bezier(.2,.7,.2,1); }
-.service-row::before { position: absolute; inset: 0 auto 0 0; width: 2px; content: ""; background: var(--blue); transform: scaleY(0); transform-origin: center; transition: transform .38s cubic-bezier(.2,.7,.2,1); pointer-events: none; }
+.service-row { min-height: 142px; position: relative; display: grid; grid-template-columns: 50px 70px minmax(200px, 1fr) minmax(170px, .7fr) 30px; align-items: center; gap: 17px; border-bottom: 1px solid #cbc9c0; transition: background-color .32s ease; }
 .service-number { align-self: start; margin-top: 35px; color: #74756d; font-size: 10px; font-weight: 600; }
 .service-icon { width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid #cccac1; border-radius: 50%; color: var(--blue); font-size: 22px; transition: color .35s ease, border-color .35s ease, background-color .35s ease, transform .45s cubic-bezier(.2,.7,.2,1); }
 .service-copy h3 { margin: 0; font-size: 20px; font-weight: 500; letter-spacing: -.04em; transition: color .35s ease; }
@@ -183,11 +182,9 @@ img { display: block; max-width: 100%; }
 .service-tags { color: #696a62; font-size: 11px; }
 .service-arrow { justify-self: end; color: #77786f; font-size: 18px; transition: color .35s ease, transform .45s cubic-bezier(.2,.7,.2,1); }
 @media (hover: hover) and (pointer: fine) {
-  .service-row:hover { background-color: rgb(255 255 255 / 48%); box-shadow: inset 0 1px rgb(255 255 255 / 58%); }
-  .service-row:hover::before { transform: scaleY(1); }
-  .service-row:hover .service-icon { color: #315fd0; border-color: #b9c6e6; background-color: rgb(76 124 242 / 7%); transform: translateX(4px); }
-  .service-row:hover .service-copy h3 { color: var(--blue); }
-  .service-row:hover .service-arrow { color: var(--blue); transform: translate(3px, -3px); }
+  .service-row:hover { background-color: rgb(255 255 255 / 34%); }
+  .service-row:hover .service-icon { border-color: #bfc1b7; background-color: rgb(255 255 255 / 48%); }
+  .service-row:hover .service-arrow { color: var(--blue); transform: translate(2px, -2px); }
 }
 
 /* Proof */
