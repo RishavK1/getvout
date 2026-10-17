@@ -455,8 +455,9 @@ export function App() {
             </div>
             <div className="proof-stats">
               <div className="proof-stat"><span className="stat-value">20<span>+</span></span><span className="stat-label">Happy clients</span></div>
-              <div className="proof-stat"><span className="stat-value">24<span>h</span></span><span className="stat-label">Response time for new enquiries</span></div>
+              <div className="proof-stat"><span className="stat-value">24<span>h</span></span><span className="stat-label">Response to new enquiries</span></div>
               <div className="proof-stat"><span className="stat-value">100<span>%</span></span><span className="stat-label">Client satisfaction</span></div>
+              <div className="proof-stat"><span className="stat-value">{projects.length}</span><span className="stat-label">Projects featured<br />in selected work</span></div>
             </div>
           </div>
         </section>
