@@ -171,6 +171,15 @@ const steps = [
 function useScrollEffects() {
   useEffect(() => {
     document.documentElement.classList.add("has-js");
+    if (!document.getElementById("quantalog-tracker")) {
+      const tracker = document.createElement("script");
+      tracker.id = "quantalog-tracker";
+      tracker.src = "https://quantalog-be.daorbit.in/tracker.js";
+      tracker.dataset.site = "6gUik4kga4_go4km";
+      tracker.async = true;
+      document.head.appendChild(tracker);
+    }
+
     const items = document.querySelectorAll("[data-reveal]");
     const observer = new IntersectionObserver(
       (entries) => {
