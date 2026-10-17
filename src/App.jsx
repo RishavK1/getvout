@@ -198,6 +198,33 @@ const steps = [
   ["04", "Put it to work", "We launch carefully, learn from real use, and make the next improvement count."],
 ];
 
+const faqs = [
+  {
+    question: "What can Getvout help us build?",
+    answer: "We work on websites, web apps, digital products, and AI-powered features or integrations. We start with the problem you need to solve and shape the right scope from there.",
+  },
+  {
+    question: "How does a project get started?",
+    answer: "We begin with a conversation about your goals, audience, constraints, and what a successful outcome looks like. Then we put together a focused scope and plan before the build begins.",
+  },
+  {
+    question: "Can you join an existing product or team?",
+    answer: "Yes. We can help shape an early idea, improve an existing website or product, or work alongside your in-house team. We’ll agree on the right role and scope together.",
+  },
+  {
+    question: "Do you work with teams outside India?",
+    answer: "Yes. Getvout is based in India and works remotely with teams around the world. We agree on a communication rhythm that works across locations and time zones.",
+  },
+  {
+    question: "How do you decide whether AI belongs in a project?",
+    answer: "We look for a clear job it can do—making something simpler, faster, or newly possible. If a straightforward solution is a better fit, we’ll recommend that instead.",
+  },
+  {
+    question: "What happens after launch?",
+    answer: "We plan the handover around the project and can scope follow-up improvements or support when they’re useful. The details are agreed before that work begins.",
+  },
+];
+
 function useScrollEffects() {
   useEffect(() => {
     document.documentElement.classList.add("has-js");
@@ -431,6 +458,7 @@ export function App() {
             <a href="#services" onClick={closeMenu}>What we do</a>
             <a href="#approach" onClick={closeMenu}>Approach</a>
             <a href="#about" onClick={closeMenu}>Studio</a>
+            <a href="#faq" onClick={closeMenu}>FAQ</a>
             <a className="nav-contact" href="#contact" onClick={closeMenu}>Let’s talk <ArrowUpRight aria-hidden="true" /></a>
           </nav>
         </div>
@@ -452,7 +480,7 @@ export function App() {
           </div>
           <div className="hero-art-wrap" data-reveal>
             <img className="hero-art" src="/images/getvout-hero-art.webp" alt="A sculptural loop of cobalt glass with a small lime glass sphere, photographed in warm studio light" fetchPriority="high" />
-            <div className="hero-art-topline"><span>GETVOUT / DIGITAL STUDIO</span><span>01 — 08</span></div>
+            <div className="hero-art-topline"><span>GETVOUT / DIGITAL STUDIO</span><span>01 — 09</span></div>
             <div className="hero-art-caption"><span className="caption-mark">G.</span><span>Ideas, made<br />real.</span><ArrowUpRight aria-hidden="true" /></div>
             <span className="hero-orbit-label">A better way out.</span>
           </div>
@@ -561,9 +589,30 @@ export function App() {
           </div>
         </section>
 
+        <section className="faq-section section-shell section-space" id="faq" aria-labelledby="faq-title">
+          <div className="faq-heading" data-reveal>
+            <div>
+              <p className="eyebrow section-index">07 <span>/</span> Project FAQ</p>
+              <h2 id="faq-title">A few things<br /><span>worth knowing.</span></h2>
+            </div>
+            <p className="section-intro">The practical details about working together, before we get into the interesting ones.</p>
+          </div>
+          <div className="faq-list" data-reveal>
+            {faqs.map(({ question, answer }) => (
+              <details className="faq-item" key={question}>
+                <summary>
+                  <span>{question}</span>
+                  <span className="faq-toggle" aria-hidden="true" />
+                </summary>
+                <div className="faq-answer"><p>{answer}</p></div>
+              </details>
+            ))}
+          </div>
+        </section>
+
         <section className="contact-section" id="contact" aria-labelledby="contact-title">
           <div className="contact-inner section-shell" data-reveal>
-            <p className="eyebrow section-index">07 <span>/</span> Your move</p>
+            <p className="eyebrow section-index">08 <span>/</span> Your move</p>
             <div className="contact-content">
               <h2 id="contact-title">Have a good<br />one in mind?</h2>
               <div className="contact-cta-wrap">
@@ -583,7 +632,7 @@ export function App() {
             <p>Digital experiences<br />for what’s next.</p>
           </div>
           <div className="footer-links">
-            <div><p className="eyebrow">Explore</p><a href="#work">Work</a><a href="#services">What we do</a><a href="#approach">Approach</a><a href="#about">Studio</a></div>
+            <div><p className="eyebrow">Explore</p><a href="#work">Work</a><a href="#services">What we do</a><a href="#approach">Approach</a><a href="#about">Studio</a><a href="#faq">FAQ</a></div>
             <div><p className="eyebrow">Contact</p><a className="footer-email" href="mailto:helo@getvout.com">helo@getvout.com <ArrowUpRight aria-hidden="true" /></a></div>
           </div>
         </div>
