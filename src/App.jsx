@@ -25,7 +25,7 @@ const projects = [
   {
     number: "02",
     name: "Jac Creation",
-    url: "https://jac-creation-jet.vercel.app/",
+    url: "https://jac.getvout.com",
     category: "Architecture · Studio website · Editorial design",
     description: "An architecture-focused web experience built around considered imagery, clear project storytelling, and a calm editorial feel.",
     image: "/images/jac-creation.jpg",
