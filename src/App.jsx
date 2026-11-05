@@ -1,643 +1,274 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  ArrowDown,
-  ArrowRight,
-  ArrowUpRight,
-  Check,
-  Code,
-  Lightning,
-  List,
-  Sparkle,
-  X,
+  ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, BracketsCurly, Check,
+  CheckCircle, Code, CursorClick, EnvelopeSimple, List, MagnifyingGlass,
+  Play, Sparkle, X,
 } from "@phosphor-icons/react";
 
 const projects = [
-  {
-    number: "01",
-    name: "Lavisha Glow & Glam",
-    url: "https://lavishaglowandglam.shop/",
-    category: "Beauty · Salon website · Brand experience",
-    description: "A polished digital home for a beauty studio, bringing its services and bridal packages together in a clear, welcoming experience.",
-    image: "/images/lavisha-glow-glam.jpg",
-    alt: "Warm editorial beauty portrait with a softly lit salon interior, created as the Lavisha Glow & Glam project preview",
-    className: "project-card--lavisha",
-  },
-  {
-    number: "02",
-    name: "Jac Creation",
-    url: "https://jac.getvout.com",
-    category: "Architecture · Studio website · Editorial design",
-    description: "An architecture-focused web experience built around considered imagery, clear project storytelling, and a calm editorial feel.",
-    image: "/images/jac-creation.jpg",
-    alt: "Contemporary stone residence in a landscaped courtyard, created as the Jac Creation project preview",
-    className: "project-card--jac-creation",
-  },
-  {
-    number: "03",
-    name: "Hira Dhan Builders",
-    url: "https://hiradhanbuilders.com/",
-    category: "Real estate · Luxury homes · Brand experience",
-    description: "A premium digital presence for a real-estate developer, presenting its homes with a clear sense of place, quality, and trust.",
-    image: "/images/hiradhan-builders.jpg",
-    alt: "Contemporary luxury residence with stone, glass, and landscaped grounds at golden hour",
-    className: "project-card--hiradhan",
-  },
-  {
-    number: "04",
-    name: "TalScout.ai",
-    url: "https://talscout.rishavkamboj.online/",
-    category: "AI SaaS · Product design · Engineering",
-    description: "Two AI engines that turn prospecting and talent search into one clear workflow.",
-    image: "/images/talscout.webp",
-    alt: "TalScout AI product homepage showing its outreach and talent intelligence workspace",
-    className: "project-card--talscout",
-  },
-  {
-    number: "05",
-    name: "Bloom",
-    url: "https://bloom.rishavkamboj.online/",
-    category: "AI product · SaaS · Next.js",
-    description: "A conversational AI app builder that turns an idea into a working application.",
-    image: "/images/bloom.webp",
-    alt: "Bloom AI app builder product page",
-    className: "project-card--bloom",
-  },
-  {
-    number: "06",
-    name: "PixelorCode",
-    category: "Digital studio · Strategy · Web development",
-    description: "A modern web studio experience built to turn thoughtful strategy and performance-led development into measurable growth.",
-    image: "/images/pixelorcode-studio.jpg",
-    alt: "Editorial concept of a creative studio website displayed on an ultrawide monitor",
-    className: "project-card--pixelorcode",
-  },
-  {
-    number: "07",
-    name: "DC Classes",
-    url: "https://dc-classes.vercel.app/",
-    category: "Education · Coaching · Learning",
-    description: "An approachable digital home for a coaching institute, helping students explore its classes and find the right next step.",
-    image: "/images/dc-classes.jpg",
-    alt: "Students attending a focused coaching class in a bright, modern classroom",
-    className: "project-card--dc-classes",
-  },
-  {
-    number: "08",
-    name: "Rana Academy",
-    url: "https://rana-academy.vercel.app/",
-    category: "Education · Academy · Student learning",
-    description: "A welcoming academy experience that makes learning programs and ways to connect easy for students and families to explore.",
-    image: "/images/rana-academy.jpg",
-    alt: "An instructor guiding a small group of students through a collaborative study session",
-    className: "project-card--rana-academy",
-  },
-  {
-    number: "09",
-    name: "Perpetual Power Services",
-    category: "Energy · Corporate website · Growth",
-    description: "A sharper online experience for a renewable energy and power solutions company, designed to build trust and attract qualified inquiries.",
-    image: "/images/perpetual-renewables.jpg",
-    alt: "Solar farm and wind turbines across a green landscape at sunrise",
-    className: "project-card--power",
-  },
-  {
-    number: "10",
-    name: "Insider Job",
-    category: "Recruitment · Full-stack platform · Product engineering",
-    description: "A feature-rich hiring platform with separate recruiter and candidate experiences, practical filters, and production-ready foundations.",
-    image: "/images/job-portal-professional.jpg",
-    alt: "Professional reviewing job listings on a laptop in a bright workspace",
-    className: "project-card--job-portal",
-  },
-  {
-    number: "11",
-    name: "Rose Cafe",
-    url: "https://rose-petal-scroll.vercel.app/",
-    category: "Hospitality · Brand website · Reservations",
-    description: "A warm, floral-led cafe experience that brings the atmosphere of the space online and makes it easy to plan a visit.",
-    image: "/images/rose-cafe-editorial.jpg",
-    alt: "Rose Cafe table with latte, pastry, and roses in warm morning light",
-    className: "project-card--rose-cafe",
-  },
-  {
-    number: "12",
-    name: "Rudra Infocom",
-    url: "https://rudrainfo.co.in/",
-    category: "B2B · IT & telecom · Lead generation",
-    description: "A clearer digital presence for a telecom solutions business, built to improve lead quality.",
-    image: "/images/rudra-network.jpg",
-    alt: "Blue-lit network operations center with servers and monitoring screens",
-    className: "project-card--rudra",
-  },
-  {
-    number: "13",
-    name: "Ruvira Atelier",
-    category: "Luxury retail · E-commerce · Brand experience",
-    description: "A refined jewelry storefront that pairs an elevated visual identity with a considered path from product discovery to inquiry.",
-    image: "/images/ruvira-jewelry.jpg",
-    alt: "Gold necklace with a deep green gemstone on pale stone",
-    className: "project-card--ruvira",
-  },
-  {
-    number: "14",
-    name: "Mema Play World",
-    category: "Play spaces · Product catalog · Lead generation",
-    description: "A playful, informative catalog that helps families explore equipment, understand safety details, and find the right play space.",
-    image: "/images/mema-play-world.jpg",
-    alt: "Modern timber playground in a landscaped park on a sunny day",
-    className: "project-card--mema",
-  },
-  {
-    number: "15",
-    name: "Stayfinder",
-    category: "Travel · Marketplace · Full-stack development",
-    description: "A full-stack rental discovery experience with listing pages and a familiar booking journey for travelers.",
-    image: "/images/airbnb-coastal-stay.jpg",
-    alt: "Coastal vacation home with a private pool and palms at sunset",
-    className: "project-card--airbnb",
-  },
-  {
-    number: "16",
-    name: "Car Rental Website",
-    category: "Mobility · Booking platform · Full-stack development",
-    description: "A car rental experience with focused vehicle discovery, a streamlined booking flow, and tools for managing inventory.",
-    image: "/images/car-rental-suv.jpg",
-    alt: "Graphite electric SUV on a rain-lit city street at dusk",
-    className: "project-card--car-rental",
-  },
+  { name: "TalScout.ai", type: "AI product · Talent intelligence", image: "/images/talscout.webp", href: "https://talscout.rishavkamboj.online/", alt: "TalScout product experience for discovering and organizing talent" },
+  { name: "JAC Creation", type: "Architecture · Digital presence", image: "/images/jac-creation.jpg", href: "https://jac.getvout.com", alt: "JAC Creation architecture and interiors website" },
+  { name: "Hira Dhan Builders", type: "Real estate · Brand website", image: "/images/hiradhan-builders.jpg", href: "https://hiradhanbuilders.com/", alt: "Contemporary home and landscape for Hira Dhan Builders" },
+  { name: "Bloom", type: "Digital product · Lifestyle", image: "/images/bloom.webp", href: "https://bloom.rishavkamboj.online/", alt: "Bloom lifestyle product website" },
+  { name: "Rose Cafe", type: "Hospitality · Brand experience", image: "/images/rose-cafe-editorial.jpg", href: "https://rose-petal-scroll.vercel.app/", alt: "Editorial visual direction for Rose Cafe" },
+  { name: "Lavisha Glow & Glam", type: "Beauty · Commerce", image: "/images/lavisha-glow-glam.jpg", href: "https://lavishaglowandglam.shop/", alt: "Lavisha Glow and Glam beauty commerce experience" },
+  { name: "Rana Academy", type: "Education · Website", image: "/images/rana-academy.jpg", href: "https://rana-academy.vercel.app/", alt: "Rana Academy learning website" },
 ];
 
 const services = [
   {
-    number: "01",
-    icon: Code,
-    title: "Websites that do their job",
-    description: "Distinctive, fast websites built around the people you need to reach and the action you want them to take.",
-    tags: "Strategy · Design · Development",
+    id: "01", title: "Websites & platforms", href: "/services/websites-platforms", icon: Code,
+    summary: "A distinctive digital home that makes your offer easy to understand and act on.",
+    details: ["Brand and marketing websites", "Landing pages and campaign sites", "E-commerce and content platforms", "Responsive design and development", "Ongoing improvements after launch"],
+    tools: ["Strategy", "UX / UI", "Next.js", "React", "Content systems"], image: "/images/service-websites-platforms.png",
   },
   {
-    number: "02",
-    icon: Sparkle,
-    title: "AI that fits the real work",
-    description: "Useful AI features, intelligent products, and automations designed around your team’s actual workflow.",
-    tags: "AI products · Integrations · Automation",
+    id: "02", title: "Products & applications", href: "/services/products-applications", icon: CursorClick,
+    summary: "Useful software shaped around the people who use it and the work they need to do.",
+    details: ["Product direction and discovery", "SaaS and web applications", "Customer and internal portals", "Product design and prototyping", "Front-end and back-end engineering"],
+    tools: ["Product design", "React", "Node.js", "APIs", "AI workflows"], image: "/images/service-products-applications.png",
   },
   {
-    number: "03",
-    icon: Lightning,
-    title: "Products ready to grow",
-    description: "Full-stack platforms and SaaS products with the design, architecture, and foundations to keep moving.",
-    tags: "Web apps · SaaS · Product engineering",
+    id: "03", title: "Strategy, design & AI", href: "/services/ai-automation", icon: Sparkle,
+    summary: "Clearer decisions, better digital journeys, and practical AI where it helps.",
+    details: ["Digital strategy and planning", "Brand and experience direction", "Workflow automation", "AI-enabled product features", "Search-ready content foundations"],
+    tools: ["Research", "Figma", "Automation", "AI", "Analytics"], image: "/images/service-strategy-design-ai.png",
   },
 ];
 
-const steps = [
-  ["01", "Get clear", "We get close to the problem, the people, and the outcome that matters."],
-  ["02", "Shape the idea", "We turn the opportunity into a focused plan, a clear experience, and a practical scope."],
-  ["03", "Make it real", "Design and engineering move together, with regular reviews and no mystery handoffs."],
-  ["04", "Put it to work", "We launch carefully, learn from real use, and make the next improvement count."],
+const stories = [
+  { eyebrow: "A product for ambitious teams", title: "TalScout brings discovery into focus.", text: "A focused product experience for finding, reviewing, and organizing talent in one place.", image: "/images/talscout.webp", tag: "Product design & build", href: projects[0].href },
+  { eyebrow: "A clearer digital front door", title: "JAC Creation makes the work easier to explore.", text: "A considered home for architecture and interior projects, with a direct path from inspiration to conversation.", image: "/images/jac-creation.jpg", tag: "Website & experience", href: projects[1].href },
+  { eyebrow: "A more expressive brand experience", title: "Rose Cafe turns a visit into a story.", text: "An editorial, image-led experience built around a memorable hospitality brand.", image: "/images/rose-cafe-editorial.jpg", tag: "Brand & web experience", href: projects[4].href },
 ];
 
-const faqs = [
-  {
-    question: "What can Getvout help us build?",
-    answer: "We work on websites, web apps, digital products, and AI-powered features or integrations. We start with the problem you need to solve and shape the right scope from there.",
-  },
-  {
-    question: "How does a project get started?",
-    answer: "We begin with a conversation about your goals, audience, constraints, and what a successful outcome looks like. Then we put together a focused scope and plan before the build begins.",
-  },
-  {
-    question: "Can you join an existing product or team?",
-    answer: "Yes. We can help shape an early idea, improve an existing website or product, or work alongside your in-house team. We’ll agree on the right role and scope together.",
-  },
-  {
-    question: "Do you work with teams outside India?",
-    answer: "Yes. Getvout is based in India and works remotely with teams around the world. We agree on a communication rhythm that works across locations and time zones.",
-  },
-  {
-    question: "How do you decide whether AI belongs in a project?",
-    answer: "We look for a clear job it can do—making something simpler, faster, or newly possible. If a straightforward solution is a better fit, we’ll recommend that instead.",
-  },
-  {
-    question: "What happens after launch?",
-    answer: "We plan the handover around the project and can scope follow-up improvements or support when they’re useful. The details are agreed before that work begins.",
-  },
+const process = [
+  ["01", "Listen & learn", "We get close to the business, the audience, and what a good outcome needs to look like.", "/images/process-discovery.jpg"],
+  ["02", "Find the opportunity", "We make sense of the brief, the context, and the decisions that will move the work forward.", "/images/process-research.jpg"],
+  ["03", "Set a direction", "We align on the experience, structure, and visual language before production begins.", "/images/process-direction.jpg"],
+  ["04", "Shape the experience", "We turn the direction into clear screens, content, and interactions to review together.", "/images/process-design.jpg"],
+  ["05", "Make it real", "We build the approved design into a responsive, usable digital experience.", "/images/process-build.jpg"],
+  ["06", "Refine the details", "We check the whole journey, polish the details, and resolve issues across devices.", "/images/process-refine.jpg"],
+  ["07", "Launch with care", "We prepare the final handoff and help the new experience go live smoothly.", "/images/process-launch.jpg"],
+  ["08", "Keep improving", "After launch, we can continue evolving the product as the business learns and grows.", "/images/process-support.jpg"],
 ];
 
-function useScrollEffects() {
+const journal = [
+  { category: "Design", title: "A good first screen gives people somewhere to go.", image: "/images/journal-design.jpg", target: "#solutions" },
+  { category: "Process", title: "The clearest build starts with the right questions.", image: "/images/journal-process.jpg", target: "#approach" },
+  { category: "Perspective", title: "Useful technology should feel simple to use.", image: "/images/journal-perspective.jpg", target: "#contact" },
+];
+
+function usePageMotion() {
   useEffect(() => {
-    document.documentElement.classList.add("has-js");
-    if (!document.getElementById("quantalog-tracker")) {
-      const tracker = document.createElement("script");
-      tracker.id = "quantalog-tracker";
-      tracker.src = "https://quantalog-be.daorbit.in/tracker.js";
-      tracker.dataset.site = "6gUik4kga4_go4km";
-      tracker.async = true;
-      document.head.appendChild(tracker);
-    }
-
-    const items = document.querySelectorAll("[data-reveal]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.13, rootMargin: "0px 0px -40px 0px" },
-    );
-    items.forEach((item) => observer.observe(item));
-
-    let frame = 0;
-    const updateProgress = () => {
-      if (frame) return;
-      frame = window.requestAnimationFrame(() => {
-        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
-        document.documentElement.style.setProperty("--page-progress", `${progress * 100}%`);
-        frame = 0;
-      });
-    };
-    window.addEventListener("scroll", updateProgress, { passive: true });
-    updateProgress();
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", updateProgress);
-      if (frame) window.cancelAnimationFrame(frame);
-    };
-  }, []);
-}
-
-function OpeningCurtain() {
-  const [opening, setOpening] = useState(true);
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(false);
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reveals = [...document.querySelectorAll("[data-reveal]")];
+    if (reduced || !("IntersectionObserver" in window)) {
+      reveals.forEach((element) => element.classList.add("is-visible"));
       return undefined;
     }
-    const startOpening = window.setTimeout(() => setOpening(false), 160);
-    const finishOpening = window.setTimeout(() => setVisible(false), 1320);
+    document.documentElement.classList.add("motion-ready");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -5% 0px" });
+    reveals.forEach((element) => observer.observe(element));
+    let raf = 0;
+    const update = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        document.documentElement.style.setProperty("--scroll-progress", `${max > 0 ? window.scrollY / max * 100 : 0}%`);
+        document.querySelectorAll("[data-parallax]").forEach((node) => {
+          const rect = node.getBoundingClientRect();
+          const travel = Math.max(-16, Math.min(16, (rect.top + rect.height / 2 - window.innerHeight / 2) * -0.025));
+          node.style.setProperty("--parallax-y", `${travel.toFixed(1)}px`);
+        });
+        raf = 0;
+      });
+    };
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update, { passive: true });
+    update();
     return () => {
-      window.clearTimeout(startOpening);
-      window.clearTimeout(finishOpening);
+      observer.disconnect();
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+      if (raf) cancelAnimationFrame(raf);
     };
   }, []);
-
-  if (!visible) return null;
-
-  return (
-    <div className={`site-intro${opening ? "" : " is-opening"}`}>
-      <div className="site-intro-door site-intro-door--left" aria-hidden="true" />
-      <div className="site-intro-door site-intro-door--right" aria-hidden="true" />
-      <div className="site-intro-brand" aria-hidden="true">
-        <span className="site-intro-mark">g</span>
-        <span>getvout<span>.</span></span>
-        <small>Independent digital studio</small>
-      </div>
-      <button className="site-intro-skip" type="button" onClick={() => setVisible(false)}>Skip intro</button>
-      <span className="site-intro-seam" aria-hidden="true" />
-    </div>
-  );
 }
 
-function ProjectCarousel({ items }) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [pointer, setPointer] = useState({ x: 0, y: 0, active: false });
-  const dragStart = useRef(null);
-  const indexRailRef = useRef(null);
-  const activeIndexRef = useRef(null);
-  const activeProject = items[activeIndex];
-
-  useEffect(() => {
-    const rail = indexRailRef.current;
-    const activeButton = activeIndexRef.current;
-    if (!rail || !activeButton) return;
-    const left = activeButton.offsetLeft - rail.offsetLeft - (rail.clientWidth - activeButton.clientWidth) / 2;
-    rail.scrollTo({ left, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
-  }, [activeIndex]);
-
-  const selectProject = (nextIndex) => {
-    setActiveIndex((nextIndex + items.length) % items.length);
-    setPointer((current) => ({ ...current, active: false }));
-  };
-  const moveProject = (direction) => selectProject(activeIndex + direction);
-  const handleKeyDown = (event) => {
-    if (event.key === "ArrowRight") {
-      event.preventDefault();
-      moveProject(1);
-    } else if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      moveProject(-1);
-    }
-  };
-  const handlePointerMove = (event) => {
-    if (event.pointerType !== "mouse") return;
-    const bounds = event.currentTarget.getBoundingClientRect();
-    setPointer({ x: event.clientX - bounds.left, y: event.clientY - bounds.top, active: true });
-  };
-  const handlePointerUp = (event) => {
-    if (dragStart.current === null) return;
-    const distance = event.clientX - dragStart.current;
-    if (Math.abs(distance) > 48) moveProject(distance < 0 ? 1 : -1);
-    dragStart.current = null;
-  };
-
-  return (
-    <div className="project-carousel" role="region" aria-roledescription="carousel" aria-label="Selected projects" tabIndex={0} onKeyDown={handleKeyDown} data-reveal>
-      <div className="project-showcase">
-        <div
-          className={`project-showcase-visual ${activeProject.className}`}
-          onPointerDown={(event) => { dragStart.current = event.clientX; }}
-          onPointerMove={handlePointerMove}
-          onPointerUp={handlePointerUp}
-          onPointerCancel={() => { dragStart.current = null; }}
-          onPointerLeave={() => setPointer((current) => ({ ...current, active: false }))}
-        >
-          <img key={activeProject.number} src={activeProject.image} alt={activeProject.alt} draggable="false" fetchPriority={activeIndex === 0 ? "high" : "auto"} />
-          <span className="project-showcase-shade" aria-hidden="true" />
-          <div className="project-showcase-overline"><span>GETVOUT / SELECTED WORK</span><span>{activeProject.number} — {String(items.length).padStart(2, "0")}</span></div>
-          <span className={`project-cursor${pointer.active ? " is-active" : ""}`} style={{ left: pointer.x, top: pointer.y }} aria-hidden="true">DRAG<br />TO EXPLORE</span>
-        </div>
-
-        <article className="project-showcase-copy" key={activeProject.number} role="group" aria-roledescription="slide" aria-label={`${activeIndex + 1} of ${items.length}: ${activeProject.name}`} aria-live="polite">
-          <p className="eyebrow project-category">{activeProject.category}</p>
-          <h3>{activeProject.name}</h3>
-          <p className="project-description">{activeProject.description}</p>
-          {activeProject.url && <a className="text-link project-link" href={activeProject.url} target="_blank" rel="noreferrer" aria-label={`Visit ${activeProject.name} website (opens in a new tab)`}>Visit live project <ArrowUpRight aria-hidden="true" /></a>}
-          <div className="project-showcase-bottom">
-            <div className="project-showcase-count"><span>PROJECT</span><strong>{activeProject.number}</strong><span>/ {String(items.length).padStart(2, "0")}</span></div>
-            <div className="project-carousel-controls">
-              <button type="button" aria-label={`Previous project: ${items[(activeIndex - 1 + items.length) % items.length].name}`} onClick={() => moveProject(-1)}><ArrowRight className="project-arrow-back" aria-hidden="true" /></button>
-              <button type="button" aria-label={`Next project: ${items[(activeIndex + 1) % items.length].name}`} onClick={() => moveProject(1)}><ArrowRight aria-hidden="true" /></button>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div className="project-carousel-index">
-        <div className="project-carousel-index-heading"><span className="eyebrow">Explore the work</span><span>{String(activeIndex + 1).padStart(2, "0")} <i>/</i> {String(items.length).padStart(2, "0")}</span></div>
-        <div className="project-carousel-progress" role="progressbar" aria-label="Project carousel position" aria-valuemin="1" aria-valuemax={items.length} aria-valuenow={activeIndex + 1}>
-          <span style={{ transform: `scaleX(${(activeIndex + 1) / items.length})` }} />
-        </div>
-        <div className="project-index-list" aria-label="Choose a project" ref={indexRailRef}>
-          {items.map((project, index) => (
-            <button ref={index === activeIndex ? activeIndexRef : null} className={`project-index-item${index === activeIndex ? " is-active" : ""}`} key={project.number} type="button" aria-label={`Show project ${project.number}: ${project.name}`} aria-pressed={index === activeIndex} onClick={() => selectProject(index)}>
-              <span>{project.number}</span>{index === activeIndex && <strong>{project.name}</strong>}
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+function Wordmark({ footer = false, onClick }) {
+  return <a className={`wordmark${footer ? " wordmark--footer" : ""}`} href="/" onClick={onClick} aria-label="Getvout home"><span className="wordmark-symbol">g</span><span>getvout<span className="wordmark-period">.</span></span></a>;
 }
 
-const technologyItems = ["React", "Next.js", "Vercel", "Node.js", "Python", "OpenAI", "Anthropic", "PostgreSQL", "Supabase", "MCP"];
-const capabilityItems = ["Web & app development", "AI-powered solutions", "MCP integrations", "AI agents", "Workflow automation", "API integrations", "SaaS products"];
-
-function MarqueeLane({ items, direction, laneLabel }) {
-  return (
-    <div className={`marquee-lane marquee-lane--${direction}`} role="group" aria-label={laneLabel}>
-      <div className="marquee-track" aria-hidden="true">
-        {[0, 1].map((copy) => (
-          <div className="marquee-sequence" key={copy}>
-            {items.map((item, index) => <span className="marquee-item" key={`${copy}-${item}`}><i>{String(index + 1).padStart(2, "0")}</i>{item}<b aria-hidden="true">✳</b></span>)}
-          </div>
-        ))}
-      </div>
-      <span className="sr-only">{items.join(", ")}</span>
+export function Header() {
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+  return <header className="site-header">
+    <div className="header-inner">
+      <Wordmark onClick={close} />
+      <button className="menu-toggle" type="button" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen((value) => !value)}>{open ? <X /> : <List />}<span>{open ? "Close" : "Menu"}</span></button>
+      <nav className={`primary-nav${open ? " is-open" : ""}`} aria-label="Main navigation">
+        <a href="/services" onClick={close}>Services</a><a href="/work" onClick={close}>Work</a><a href="/#approach" onClick={close}>Process</a><a href="/#why" onClick={close}>Why Getvout</a><a href="/studio" onClick={close}>Studio</a><a href="/#journal" onClick={close}>Journal</a><a className="nav-cta" href="/contact" onClick={close}>Let’s talk <ArrowUpRight /></a>
+      </nav>
     </div>
-  );
+  </header>;
 }
 
-function TechnologyMarquee() {
-  return (
-    <div className="technology-marquee" data-reveal>
-      <div className="technology-marquee-heading"><p className="eyebrow">One studio. The whole stack.</p><p>Ideas move from first sketch to working software.</p></div>
-      <div className="marquee-lanes">
-        <MarqueeLane items={technologyItems} direction="forward" laneLabel="Technologies we work with" />
-        <MarqueeLane items={capabilityItems} direction="reverse" laneLabel="Our digital capabilities" />
+function Hero() {
+  return <section className="hero section-shell" id="top">
+    <div className="hero-copy" data-reveal>
+      <p className="eyebrow hero-kicker"><span className="status-dot" /> Independent digital studio <i>/</i> Working everywhere</p>
+      <h1>Make your next move <em>matter.</em></h1>
+      <p className="hero-lede">We build distinctive websites, intelligent products, and digital experiences that move ambitious businesses forward.</p>
+      <div className="hero-actions"><a className="button button-dark" href="#contact">Start a conversation <ArrowUpRight /></a><a className="button button-outline" href="#portfolio">See our work <ArrowDown /></a></div>
+      <div className="hero-capabilities"><span>Strategy</span><i /><span>Design</span><i /><span>Engineering</span><i /><span>AI</span></div>
+    </div>
+    <div className="hero-stage" data-reveal>
+      <div className="hero-art-frame" data-parallax><img src="/images/getvout-hero-art.webp" alt="Cobalt glass sculpture with a lime sphere in warm natural light" fetchPriority="high" /><div className="hero-art-label"><span>GETVOUT / DIGITAL STUDIO</span><span>01 — 07</span></div><div className="hero-art-caption"><span className="hero-monogram">G.</span><span>Ideas,<br />made real.</span><i>A better way out.</i></div></div>
+      <div className="hero-note"><span className="hero-note-icon"><Sparkle weight="fill" /></span><div><strong>Have something in mind?</strong><span>Let’s make the next step clear.</span></div><a href="#contact" aria-label="Start a conversation"><ArrowUpRight /></a></div>
+      <span className="hero-index">Independent by design · Built around what’s next</span>
+    </div>
+  </section>;
+}
+
+function WorkRibbon() {
+  const names = ["TalScout.ai", "JAC Creation", "Hira Dhan Builders", "Bloom", "Rose Cafe", "Lavisha Glow & Glam", "Rana Academy"];
+  return <section className="work-ribbon" aria-label="Selected work and project categories"><div className="ribbon-inner section-shell"><div className="ribbon-title"><span className="eyebrow">01 / A few things we’ve made</span><strong>Work across ideas and industries.</strong></div><div className="ribbon-track">{names.map((name, i) => <span className="ribbon-name" key={name}><b>{String(i + 1).padStart(2, "0")}</b>{name}</span>)}</div><a className="ribbon-link" href="#portfolio">Explore projects <ArrowUpRight /></a></div></section>;
+}
+
+function Solutions() {
+  const [active, setActive] = useState(0);
+  const current = services[active];
+  const Icon = current.icon;
+  return <section className="solutions section-shell" id="solutions">
+    <div className="section-heading" data-reveal><div><p className="eyebrow"><b>02 / What we do</b></p><h2>Digital work built<br />for <em>what’s next.</em></h2></div><p>From the first question to the final detail, we bring strategy, design, and technology together around your goals.</p></div>
+    <div className="solutions-layout">
+      <div className="solution-list" role="tablist" aria-label="Getvout capabilities" data-reveal>
+        {services.map((service, index) => { const ServiceIcon = service.icon; return <button className={`solution-tab${active === index ? " is-active" : ""}`} key={service.id} type="button" role="tab" aria-selected={active === index} onClick={() => setActive(index)}><span className="solution-tab-number">[{service.id}]</span><span className="solution-tab-title">{service.title}</span><ServiceIcon className="solution-tab-icon" /><span className="solution-tab-arrow"><ArrowUpRight /></span></button>; })}
+      </div>
+      <article className="solution-detail" role="tabpanel" key={current.id} data-reveal>
+        <div className="solution-detail-copy"><span className="solution-detail-mark"><Icon weight="fill" /></span><h3>{current.title}</h3><p>{current.summary}</p><a className="text-link" href={current.href}>Explore this capability <ArrowUpRight /></a>
+          <div className="solution-detail-columns"><div><p className="eyebrow">What we do</p><ul>{current.details.map((item) => <li key={item}><Check />{item}</li>)}</ul></div><div><p className="eyebrow">Tools & thinking</p><div className="tool-pills">{current.tools.map((tool) => <span key={tool}>{tool}</span>)}</div></div></div>
+        </div>
+        <figure className="solution-image"><img src={current.image} alt="" loading="lazy" /><figcaption>Thoughtful design, made useful.</figcaption><span className="image-corner" aria-hidden="true"><ArrowUpRight /></span></figure>
+      </article>
+    </div>
+  </section>;
+}
+
+function Portfolio() {
+  const [active, setActive] = useState(0);
+  const project = projects[active];
+  const change = (delta) => setActive((current) => (current + delta + projects.length) % projects.length);
+  return <section className="portfolio" id="portfolio">
+    <div className="portfolio-inner section-shell">
+      <div className="portfolio-head" data-reveal><div><p className="eyebrow"><b>03 / Selected work</b></p><h2>Good work should<br />make you <em>look twice.</em></h2></div><p>A selection of digital experiences and identities made with care, each shaped around a different ambition.</p></div>
+      <div className="portfolio-feature" data-reveal>
+        <a className="portfolio-image" href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.name}`} key={project.name}><img src={project.image} alt={project.alt} loading="lazy" /><span className="portfolio-image-index">{String(active + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</span><span className="portfolio-open"><ArrowUpRight /></span></a>
+        <div className="portfolio-meta"><div><p className="eyebrow">{project.type}</p><h3>{project.name}</h3><p>Designed to give the work a clear, memorable place to live online.</p><a className="text-link" href={project.href} target="_blank" rel="noreferrer">Visit project <ArrowUpRight /></a></div><div className="portfolio-controls"><button type="button" aria-label="Previous project" onClick={() => change(-1)}><ArrowLeft /></button><button type="button" aria-label="Next project" onClick={() => change(1)}><ArrowRight /></button></div></div>
+      </div>
+      <div className="portfolio-thumbnails" role="tablist" aria-label="Choose a project">{projects.map((item, index) => <button type="button" role="tab" aria-selected={index === active} className={index === active ? "is-active" : ""} key={item.name} onClick={() => setActive(index)}><img src={item.image} alt="" loading="lazy" /><span>{item.name}</span></button>)}</div>
+    </div>
+  </section>;
+}
+
+function Stories() {
+  const [active, setActive] = useState(0);
+  const story = stories[active];
+  const change = (delta) => setActive((current) => (current + delta + stories.length) % stories.length);
+  return <section className="stories section-shell" id="stories">
+    <div className="stories-heading" data-reveal><div><p className="eyebrow"><b>04 / Work in focus</b></p><h2>Made to do more<br />than <em>look good.</em></h2></div><p>Different goals call for different answers. Here are a few real projects, and the problem each experience helps solve.</p></div>
+    <div className="story-feature" data-reveal key={story.title}>
+      <a className="story-photo" href={story.href} target="_blank" rel="noreferrer"><img src={story.image} alt="" loading="lazy" /><span><Play weight="fill" /> Explore the project</span></a>
+      <div className="story-copy"><span className="eyebrow">{story.eyebrow}</span><h3>{story.title}</h3><p>{story.text}</p><span className="story-tag"><CheckCircle /> {story.tag}</span><div className="story-controls"><div className="story-dots" aria-label={`Project ${active + 1} of ${stories.length}`}>{stories.map((item, index) => <button type="button" key={item.title} className={index === active ? "is-active" : ""} aria-label={`Show story ${index + 1}`} onClick={() => setActive(index)} />)}</div><div><button type="button" aria-label="Previous story" onClick={() => change(-1)}><ArrowLeft /></button><button type="button" aria-label="Next story" onClick={() => change(1)}><ArrowRight /></button></div></div></div>
+    </div>
+    <div className="proof-row" data-reveal><div><span className="proof-number">01</span><p>Real work</p><small>Live projects across products, services, and commerce.</small></div><div><span className="proof-number">02</span><p>Close collaboration</p><small>Shared decisions, clear checkpoints, and room to refine.</small></div><div><span className="proof-number">03</span><p>Built to keep moving</p><small>Responsive foundations that can grow with the business.</small></div></div>
+  </section>;
+}
+
+function Approach() {
+  const [active, setActive] = useState(0);
+  const step = process[active];
+  return <section className="approach" id="approach">
+    <div className="approach-inner section-shell">
+      <div className="approach-heading" data-reveal><div><p className="eyebrow"><b>05 / From first thought to launch</b></p><h2>A process with<br />room to <em>think.</em></h2></div><p>Eight practical steps. One shared direction. We keep the work visible so you always know where it stands.</p></div>
+      <div className="process-experience" data-reveal>
+        <div className="process-visual"><img key={step[3]} src={step[3]} alt={`Illustration of the ${step[1].toLowerCase()} stage`} loading="lazy" /><div className="process-visual-shade" /><div className="process-visual-caption"><span className="eyebrow">THE GETVOUT APPROACH</span><strong>{step[1]}</strong><span>{step[0]} / 08</span></div><div className="process-progress"><span style={{ width: `${(active + 1) / process.length * 100}%` }} /></div></div>
+        <div className="process-side"><div className="process-side-intro"><span className="eyebrow">{step[0]} / 08</span><h3>{step[1]}</h3><p>{step[2]}</p></div><div className="process-list" role="tablist" aria-label="Eight project steps">{process.map(([number, title], index) => <button type="button" role="tab" aria-selected={active === index} className={active === index ? "is-active" : ""} key={number} onClick={() => setActive(index)}><span>{number}</span><strong>{title}</strong><span className="process-check">{active === index ? <Check /> : <ArrowUpRight />}</span></button>)}</div></div>
       </div>
     </div>
-  );
+  </section>;
+}
+
+function WhyGetvout() {
+  const rows = [
+    ["Clear direction before production", "We agree on the audience, the goal, and the shape of the work."],
+    ["The people doing the work stay close", "Questions and decisions reach the designers and builders directly."],
+    ["Progress stays visible", "You see the work in stages and have space to give thoughtful feedback."],
+    ["Built for real use", "We consider content, devices, and the everyday tasks the experience must support."],
+    ["Support beyond launch", "The relationship can continue as your needs and priorities change."],
+  ];
+  return <section className="why section-shell" id="why">
+    <div className="why-heading" data-reveal><div><p className="eyebrow"><b>06 / A thoughtful partnership</b></p><h2>Why Getvout over<br /><em>other agencies?</em></h2></div><p>A straightforward view of our approach and what it can mean for your project.</p></div>
+    <div className="comparison" data-reveal><div className="comparison-head"><span>How we work</span><span>What that means for you</span><span className="comparison-brand"><span className="mini-g">g.</span> Getvout</span></div>{rows.map(([title, detail], index) => <div className="comparison-row" key={title}><span className="comparison-number">0{index + 1}</span><strong>{title}</strong><span className="comparison-detail">{detail}</span><span className="comparison-check"><Check /></span></div>)}</div>
+    <div className="founder-note" data-reveal><span className="founder-mark">G.</span><div><span className="eyebrow">A note from the studio</span><p>“The best digital work starts by understanding what matters to the people behind it.”</p><small>Getvout · Independent digital studio</small></div><a href="#contact" aria-label="Talk to Getvout"><ArrowUpRight /></a></div>
+  </section>;
+}
+
+function Studio() {
+  const collage = [projects[2], projects[4], projects[0], projects[5]];
+  return <section className="studio" id="studio">
+    <div className="studio-inner section-shell">
+      <div className="studio-copy" data-reveal><p className="eyebrow"><b>07 / The studio</b></p><h2>A small studio<br />with a <em>bigger focus.</em></h2><p>Getvout brings strategy, design, engineering, and AI together to make useful things for what’s next. You work closely with the people shaping and building your project.</p><a className="button button-light" href="#contact">Meet us in a conversation <ArrowUpRight /></a></div>
+      <div className="studio-collage" data-reveal aria-label="A selection of Getvout project imagery">{collage.map((item, index) => <a href={item.href} target="_blank" rel="noreferrer" key={item.name} className={`collage-shot collage-shot--${index + 1}`}><img src={item.image} alt={item.alt} loading="lazy" /><span>{item.name}</span></a>)}<span className="collage-note">Work made with care<br />and a close eye on detail.</span></div>
+    </div>
+  </section>;
+}
+
+function Journal() {
+  return <section className="journal section-shell" id="journal">
+    <div className="journal-heading" data-reveal><div><p className="eyebrow"><b>08 / Notes from the studio</b></p><h2>Ideas, process,<br />and <em>perspective.</em></h2></div><p>A few things we keep coming back to while making digital work.</p></div>
+    <div className="journal-grid">{journal.map((entry, index) => <a className="journal-card" href={entry.target} key={entry.title} data-reveal style={{ "--delay": `${index * 80}ms` }}><div className="journal-image"><img src={entry.image} alt="" loading="lazy" /><span><ArrowUpRight /></span></div><p className="eyebrow">{entry.category}</p><h3>{entry.title}</h3><span className="journal-read">A thought from Getvout <ArrowUpRight /></span></a>)}</div>
+    <div className="media-note" data-reveal><span className="media-note-label"><MagnifyingGlass /> A note on the work</span><p>Our portfolio is the best place to see what we make. We share each project as a piece of work, not as a borrowed endorsement.</p><a href="#portfolio">Browse selected work <ArrowUpRight /></a></div>
+  </section>;
+}
+
+function Contact() {
+  const [mode, setMode] = useState("conversation");
+  const [sent, setSent] = useState(false);
+  const submit = (event) => {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const subject = encodeURIComponent(`Project conversation: ${form.get("name") || "New enquiry"}`);
+    const body = encodeURIComponent(`Name: ${form.get("name")}\nEmail: ${form.get("email")}\n\nWhat I'm working on:\n${form.get("brief")}`);
+    window.location.href = `mailto:helo@getvout.com?subject=${subject}&body=${body}`;
+    setSent(true);
+  };
+  return <section className="contact section-shell" id="contact">
+    <div className="contact-heading" data-reveal><div><p className="eyebrow"><b>09 / Start a conversation</b></p><h2>Pick a path.<br /><em>We’ll take it from there.</em></h2></div><p>No big pitch needed. Tell us a little about what you’re making, or simply say hello.</p></div>
+    <div className="contact-panel" data-reveal>
+      <div className="contact-panel-head"><div><span className="eyebrow">GETVOUT / CONTACT</span><h3>What would you like to do?</h3></div><div className="contact-tabs" role="tablist" aria-label="Contact options"><button type="button" role="tab" aria-selected={mode === "conversation"} className={mode === "conversation" ? "is-active" : ""} onClick={() => setMode("conversation")}>Talk to the studio</button><button type="button" role="tab" aria-selected={mode === "email"} className={mode === "email" ? "is-active" : ""} onClick={() => setMode("email")}>Send a brief</button></div></div>
+      <div className="contact-content"><div className="contact-guidance"><span className="contact-guidance-icon">{mode === "conversation" ? <EnvelopeSimple /> : <BracketsCurly />}</span><h4>{mode === "conversation" ? "Start with a simple hello." : "Share what you’re working on."}</h4><p>{mode === "conversation" ? "We’ll learn a little about your goals and figure out the right next step together." : "A few details are enough. We’ll read through them and get back to you by email."}</p><a href="mailto:helo@getvout.com">helo@getvout.com <ArrowUpRight /></a></div>
+        <form className="contact-form" onSubmit={submit}><div className="form-fields"><label>Your name<input name="name" autoComplete="name" placeholder="Name" required /></label><label>Email address<input name="email" type="email" autoComplete="email" placeholder="you@company.com" required /></label></div><label>A little about the project<textarea name="brief" rows="3" placeholder="What would you like to make?" required /></label><div className="form-footer"><span><CheckCircle /> No commitment. Just a first conversation.</span><button className="button button-dark" type="submit">{mode === "conversation" ? "Start a conversation" : "Send project details"}<ArrowUpRight /></button></div>{sent && <p className="form-feedback" role="status">Your email app is opening with the details. You can review and send it there.</p>}</form>
+      </div>
+    </div>
+  </section>;
+}
+
+export function Footer() {
+  return <footer className="site-footer"><div className="footer-cta section-shell" data-reveal><div><p className="eyebrow">10 / Here for what’s next</p><h2>Got something<br />to <em>make?</em></h2></div><div><p>Websites, products, and digital experiences with a little more thought behind them.</p><a className="button button-lime" href="/contact">Tell us about it <ArrowUpRight /></a></div><span className="footer-orbit footer-orbit--one" /><span className="footer-orbit footer-orbit--two" /></div>
+    <div className="footer-main section-shell"><div className="footer-brand"><Wordmark footer /><p>Independent digital studio<br />Working everywhere.</p><a href="mailto:helo@getvout.com">helo@getvout.com <ArrowUpRight /></a></div><div className="footer-columns"><div><span className="eyebrow">Explore</span><a href="/services">All services</a><a href="/work">Selected work</a><a href="/#approach">Our approach</a><a href="/studio">The studio</a></div><div><span className="eyebrow">Capabilities</span><a href="/services/websites-platforms">Websites & platforms</a><a href="/services/products-applications">Products & applications</a><a href="/services/ai-automation">AI & automation</a><a href="/services/digital-strategy">Strategy & experience</a></div><div><span className="eyebrow">Say hello</span><a href="mailto:helo@getvout.com">Email the studio <ArrowUpRight /></a><a href="/contact">Start a conversation <ArrowUpRight /></a></div></div></div>
+    <div className="footer-bottom section-shell"><span>© {new Date().getFullYear()} Getvout</span><span>Thoughtful work, made real.</span><a href="/">Back to home <ArrowUpRight /></a></div></footer>;
 }
 
 export function App() {
-  useScrollEffects();
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const closeMenu = () => setMenuOpen(false);
-
-  return (
-    <>
-      <OpeningCurtain />
-      <a className="skip-link" href="#main">Skip to content</a>
-      <div className="scroll-progress" aria-hidden="true" />
-      <header className="site-header">
-        <div className="header-inner">
-          <a href="#top" className="wordmark" aria-label="getvout home" onClick={closeMenu}>
-            <span className="wordmark-symbol" aria-hidden="true">g</span>
-            <span>getvout<span className="wordmark-period">.</span></span>
-          </a>
-          <button
-            type="button"
-            className="menu-toggle"
-            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-            aria-expanded={menuOpen}
-            aria-controls="primary-navigation"
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            {menuOpen ? <X weight="bold" /> : <List weight="bold" />}
-          </button>
-          <nav id="primary-navigation" className={`primary-nav${menuOpen ? " is-open" : ""}`} aria-label="Main navigation">
-            <a href="#work" onClick={closeMenu}>Work</a>
-            <a href="#services" onClick={closeMenu}>What we do</a>
-            <a href="#approach" onClick={closeMenu}>Approach</a>
-            <a href="#about" onClick={closeMenu}>Studio</a>
-            <a href="#faq" onClick={closeMenu}>FAQ</a>
-            <a className="nav-contact" href="#contact" onClick={closeMenu}>Let’s talk <ArrowUpRight aria-hidden="true" /></a>
-          </nav>
-        </div>
-      </header>
-
-      <main id="main">
-        <section className="hero section-shell" id="top" aria-labelledby="hero-title">
-          <div className="hero-copy" data-reveal>
-            <p className="eyebrow hero-kicker"><span className="availability-dot" /> Independent digital studio <span className="kicker-divider">/</span> Working everywhere</p>
-            <h1 id="hero-title">Make your<br />next move <span className="headline-accent">matter.</span></h1>
-            <p className="hero-description">We build distinctive websites, intelligent products, and digital experiences that move ambitious businesses forward.</p>
-            <div className="hero-actions">
-              <a className="button button-dark" href="#contact">Start a conversation <ArrowUpRight aria-hidden="true" /></a>
-              <a className="button button-quiet" href="#work">Explore our work <ArrowDown aria-hidden="true" /></a>
-            </div>
-            <div className="hero-capabilities" aria-label="Our capabilities">
-              <span>Strategy</span><i /> <span>Design</span><i /> <span>Engineering</span><i /> <span>AI</span>
-            </div>
-          </div>
-          <div className="hero-art-wrap" data-reveal>
-            <img className="hero-art" src="/images/getvout-hero-art.webp" alt="A sculptural loop of cobalt glass with a small lime glass sphere, photographed in warm studio light" fetchPriority="high" />
-            <div className="hero-art-topline"><span>GETVOUT / DIGITAL STUDIO</span><span>01 — 09</span></div>
-            <div className="hero-art-caption"><span className="caption-mark">G.</span><span>Ideas, made<br />real.</span><ArrowUpRight aria-hidden="true" /></div>
-            <span className="hero-orbit-label">A better way out.</span>
-          </div>
-          <a className="hero-scroll" href="#work" aria-label="Scroll to selected work"><span>Scroll to explore</span><ArrowDown aria-hidden="true" /></a>
-        </section>
-
-        <section className="work-section section-shell section-space" id="work" aria-labelledby="work-title">
-          <div className="section-heading work-heading" data-reveal>
-            <div>
-              <p className="eyebrow section-index">01 <span>/</span> Selected work</p>
-              <h2 id="work-title">Built with intent.<br /><span>Made to matter.</span></h2>
-            </div>
-            <p className="section-intro">A selection of digital products and experiences, each shaped around a real need and built to work in the real world.</p>
-          </div>
-          <ProjectCarousel items={projects} />
-          <TechnologyMarquee />
-        </section>
-
-        <section className="services-section section-shell section-space" id="services" aria-labelledby="services-title">
-          <div className="section-heading services-heading" data-reveal>
-            <div>
-              <p className="eyebrow section-index">02 <span>/</span> What we do</p>
-              <h2 id="services-title">The right work.<br /><span>Done exceptionally.</span></h2>
-            </div>
-            <p className="section-intro">From first thought to final launch, we bring strategy, design, and engineering into one considered process.</p>
-          </div>
-          <div className="service-list">
-            {services.map(({ number, icon: Icon, title, description, tags }) => (
-              <article className="service-row" key={number} data-reveal>
-                <span className="service-number">{number}</span>
-                <span className="service-icon"><Icon weight="light" aria-hidden="true" /></span>
-                <div className="service-copy"><h3>{title}</h3><p>{description}</p></div>
-                <span className="service-tags">{tags}</span>
-                <ArrowUpRight className="service-arrow" aria-hidden="true" />
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="proof-section" aria-labelledby="proof-title">
-          <div className="proof-inner section-shell" data-reveal>
-            <div className="proof-heading">
-              <p className="eyebrow section-index">03 <span>/</span> The studio, in numbers</p>
-              <h2 id="proof-title">A little proof<br />goes a long way.</h2>
-              <p>Good work is built on happy clients, clear communication, and a standard we hold ourselves to.</p>
-            </div>
-            <div className="proof-stats">
-              <div className="proof-stat"><span className="stat-value">20<span>+</span></span><span className="stat-label">Happy clients</span></div>
-              <div className="proof-stat"><span className="stat-value">24<span>h</span></span><span className="stat-label">Response to new enquiries</span></div>
-              <div className="proof-stat"><span className="stat-value">100<span>%</span></span><span className="stat-label">Client satisfaction</span></div>
-              <div className="proof-stat"><span className="stat-value">{projects.length}</span><span className="stat-label">Projects featured<br />in selected work</span></div>
-            </div>
-          </div>
-        </section>
-
-        <section className="ai-section section-shell section-space" aria-labelledby="ai-title">
-          <div className="ai-copy" data-reveal>
-            <p className="eyebrow section-index">04 <span>/</span> Applied AI</p>
-            <h2 id="ai-title">AI should earn<br />its place.</h2>
-            <p className="ai-description">We bring AI into products when it makes something simpler, faster, or newly possible. Thought through from the first interaction to the last.</p>
-            <a className="text-link" href="#work">Explore selected work <ArrowUpRight aria-hidden="true" /></a>
-            <div className="ai-detail-list">
-              <span><Check aria-hidden="true" /> Useful, human-centered experiences</span>
-              <span><Check aria-hidden="true" /> Carefully integrated models and data</span>
-              <span><Check aria-hidden="true" /> Clear safeguards and ownership</span>
-            </div>
-          </div>
-          <div className="ai-visual" data-reveal>
-            <img src="/images/applied-ai-sculpture.webp" alt="Cobalt glass forms connected around a luminous lime core, representing thoughtful AI systems" loading="lazy" />
-            <div className="ai-visual-label"><Sparkle weight="fill" aria-hidden="true" /><span>AI, put to work.</span></div>
-            <span className="ai-visual-index">GETVOUT / APPLIED AI</span>
-          </div>
-        </section>
-
-        <section className="approach-section section-shell section-space" id="approach" aria-labelledby="approach-title">
-          <div className="approach-header" data-reveal>
-            <div>
-              <p className="eyebrow section-index">05 <span>/</span> How we work</p>
-              <h2 id="approach-title">Clear thinking.<br /><span>Good things happen.</span></h2>
-            </div>
-            <p className="section-intro">A calm, collaborative process that keeps the important things in view and the work moving.</p>
-          </div>
-          <div className="steps-grid">
-            {steps.map(([number, title, description], index) => (
-              <article className="step-card" key={number} data-reveal style={{ "--step-delay": `${index * 80}ms` }}>
-                <span className="step-number">{number}</span>
-                <h3>{title}</h3>
-                <p>{description}</p>
-                <span className="step-rule" aria-hidden="true" />
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="about-section section-shell section-space" id="about" aria-labelledby="about-title">
-          <div className="about-art" data-reveal>
-            <img src="/images/getvout-hero-art.webp" alt="Detail of the hand-blown cobalt glass form used as getvout’s visual signature" loading="lazy" />
-            <span className="about-art-note">MAKE GOOD<br />THINGS HAPPEN.</span>
-          </div>
-          <div className="about-copy" data-reveal>
-            <p className="eyebrow section-index">06 <span>/</span> The studio</p>
-            <h2 id="about-title">Small enough<br />to care. <span>Sharp<br />enough to deliver.</span></h2>
-            <p>getvout is an independent digital studio for teams with something meaningful to build. We bring product thinking, considered design, and solid engineering together from the first conversation to launch.</p>
-            <p>Based in India. Working with ambitious people everywhere.</p>
-            <a className="text-link" href="#work">Explore selected work <ArrowUpRight aria-hidden="true" /></a>
-          </div>
-        </section>
-
-        <section className="faq-section section-shell section-space" id="faq" aria-labelledby="faq-title">
-          <div className="faq-heading" data-reveal>
-            <div>
-              <p className="eyebrow section-index">07 <span>/</span> Project FAQ</p>
-              <h2 id="faq-title">A few things<br /><span>worth knowing.</span></h2>
-            </div>
-            <p className="section-intro">The practical details about working together, before we get into the interesting ones.</p>
-          </div>
-          <div className="faq-list" data-reveal>
-            {faqs.map(({ question, answer }) => (
-              <details className="faq-item" key={question}>
-                <summary>
-                  <span>{question}</span>
-                  <span className="faq-toggle" aria-hidden="true" />
-                </summary>
-                <div className="faq-answer"><p>{answer}</p></div>
-              </details>
-            ))}
-          </div>
-        </section>
-
-        <section className="contact-section" id="contact" aria-labelledby="contact-title">
-          <div className="contact-inner section-shell" data-reveal>
-            <p className="eyebrow section-index">08 <span>/</span> Your move</p>
-            <div className="contact-content">
-              <h2 id="contact-title">Have a good<br />one in mind?</h2>
-              <div className="contact-cta-wrap">
-                <p>Tell us what you’re working on. We’ll help you find the right way forward.</p>
-                <a className="button button-lime" href="mailto:helo@getvout.com?subject=Project%20enquiry%20for%20getvout.com">Tell us about it <ArrowUpRight aria-hidden="true" /></a>
-              </div>
-            </div>
-            <div className="contact-orbit" aria-hidden="true"><span>GOOD IDEAS</span><ArrowUpRight /></div>
-          </div>
-        </section>
-      </main>
-
-      <footer className="site-footer">
-        <div className="footer-main section-shell">
-          <div className="footer-brand-block">
-            <a href="#top" className="wordmark footer-wordmark" aria-label="getvout home"><span className="wordmark-symbol" aria-hidden="true">g</span><span>getvout<span className="wordmark-period">.</span></span></a>
-            <p>Digital experiences<br />for what’s next.</p>
-          </div>
-          <div className="footer-links">
-            <div><p className="eyebrow">Explore</p><a href="#work">Work</a><a href="#services">What we do</a><a href="#approach">Approach</a><a href="#about">Studio</a><a href="#faq">FAQ</a></div>
-            <div><p className="eyebrow">Contact</p><a className="footer-email" href="mailto:helo@getvout.com">helo@getvout.com <ArrowUpRight aria-hidden="true" /></a></div>
-          </div>
-        </div>
-        <div className="footer-bottom section-shell"><span>© {new Date().getFullYear()} getvout.com</span><span>Independent by nature. Connected everywhere.</span><a href="#top">Back to top <ArrowUpRight aria-hidden="true" /></a></div>
-      </footer>
-    </>
-  );
+  usePageMotion();
+  return <><a className="skip-link" href="#main">Skip to content</a><div className="scroll-progress" aria-hidden="true" /><Header /><main id="main"><Hero /><WorkRibbon /><Solutions /><Portfolio /><Stories /><Approach /><WhyGetvout /><Studio /><Journal /><Contact /></main><Footer /></>;
 }

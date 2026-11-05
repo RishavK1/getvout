@@ -5,15 +5,20 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/prepare-sites-build.mjs",
+    "build": "vite build && node scripts/prepare-sites-build.mjs && node scripts/prerender-marketing-pages.mjs",
     "preview": "vite preview",
+    "video:studio": "remotion studio video/index.jsx --public-dir=public",
+    "video:render": "remotion render video/index.jsx GetvoutIntro video/output/getvout-intro-reel.mp4 --public-dir=public",
+    "video:sound": "node video/create-soundbed.mjs",
     "test:sites": "node --test tests/sites-worker.test.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
+    "@remotion/cli": "^4.0.538",
     "@vitejs/plugin-react": "5.0.4",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "remotion": "^4.0.538",
     "vite": "6.4.2"
   }
 }
