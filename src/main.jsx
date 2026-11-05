@@ -9,8 +9,13 @@ import "./estate-demo.css";
 const path = window.location.pathname.replace(/\/$/, "") || "/";
 const isMarketingPage = marketingRoutes.includes(path);
 
-createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    {window.location.pathname.startsWith("/estate-demo") || window.location.hostname === "aurelia.getvout.com" ? <EstateDemo /> : isMarketingPage ? <MarketingPage path={path} /> : <App />}
-  </React.StrictMode>,
-);
+const app = window.location.pathname.startsWith("/estate-demo") || window.location.hostname === "aurelia.getvout.com"
+  ? <EstateDemo />
+  : isMarketingPage
+    ? <MarketingPage path={path} />
+    : <App />;
+
+const root = createRoot(document.getElementById("root"));
+window.setTimeout(() => {
+  root.render(<React.StrictMode>{app}</React.StrictMode>);
+}, 1250);

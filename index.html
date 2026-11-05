@@ -37,6 +37,7 @@
       :root { background: #f5f3ed; color: #171817; }
       .app-boot-screen { min-height: 100svh; display: grid; place-content: center; justify-items: center; gap: 18px; font: 700 17px/1.1 Arial, sans-serif; letter-spacing: -.05em; }
       .app-boot-wordmark { display: flex; align-items: center; gap: 10px; }
+      .app-boot-caption { color: #777972; font: 500 11px/1.4 Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
       .app-boot-mark { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; color: #d9ff00; background: #171817; font: 700 22px/1 Georgia, serif; letter-spacing: 0; }
       .app-boot-period { color: #1748ff; }
       .app-boot-indicator { width: 52px; height: 2px; overflow: hidden; border-radius: 2px; background: #deddd6; }
@@ -82,6 +83,7 @@
     <div id="root">
       <div class="app-boot-screen" role="status" aria-label="Loading Getvout">
         <div class="app-boot-wordmark"><span class="app-boot-mark">g</span><span>getvout<span class="app-boot-period">.</span></span></div>
+        <span class="app-boot-caption">Independent digital studio</span>
         <span class="app-boot-indicator" aria-hidden="true"></span>
       </div>
     </div>
