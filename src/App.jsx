@@ -20,19 +20,19 @@ const services = [
     id: "01", title: "Websites & platforms", href: "/services/websites-platforms", icon: Code,
     summary: "A distinctive digital home that makes your offer easy to understand and act on.",
     details: ["Brand and marketing websites", "Landing pages and campaign sites", "E-commerce and content platforms", "Responsive design and development", "Ongoing improvements after launch"],
-    tools: ["Strategy", "UX / UI", "Next.js", "React", "Content systems"], image: "/images/service-websites-platforms.png",
+    tools: ["Strategy", "UX / UI", "Next.js", "React", "Content systems"], image: "/images/service-websites-platforms.png", imageAlt: "A refined contemporary residence used as a visual study for website design",
   },
   {
     id: "02", title: "Products & applications", href: "/services/products-applications", icon: CursorClick,
     summary: "Useful software shaped around the people who use it and the work they need to do.",
     details: ["Product direction and discovery", "SaaS and web applications", "Customer and internal portals", "Product design and prototyping", "Front-end and back-end engineering"],
-    tools: ["Product design", "React", "Node.js", "APIs", "AI workflows"], image: "/images/service-products-applications.png",
+    tools: ["Product design", "React", "Node.js", "APIs", "AI workflows"], image: "/images/service-products-applications.png", imageAlt: "Digital product planning boards and an application interface",
   },
   {
     id: "03", title: "Strategy, design & AI", href: "/services/ai-automation", icon: Sparkle,
     summary: "Clearer decisions, better digital journeys, and practical AI where it helps.",
     details: ["Digital strategy and planning", "Brand and experience direction", "Workflow automation", "AI-enabled product features", "Search-ready content foundations"],
-    tools: ["Research", "Figma", "Automation", "AI", "Analytics"], image: "/images/service-strategy-design-ai.png",
+    tools: ["Research", "Figma", "Automation", "AI", "Analytics"], image: "/images/service-strategy-design-ai.png", imageAlt: "Visual research board combining interface, color, and material references",
   },
 ];
 
@@ -157,7 +157,7 @@ function Solutions() {
         <div className="solution-detail-copy"><span className="solution-detail-mark"><Icon weight="fill" /></span><h3>{current.title}</h3><p>{current.summary}</p><a className="text-link" href={current.href}>Explore this capability <ArrowUpRight /></a>
           <div className="solution-detail-columns"><div><p className="eyebrow">What we do</p><ul>{current.details.map((item) => <li key={item}><Check />{item}</li>)}</ul></div><div><p className="eyebrow">Tools & thinking</p><div className="tool-pills">{current.tools.map((tool) => <span key={tool}>{tool}</span>)}</div></div></div>
         </div>
-        <figure className="solution-image"><img src={current.image} alt="" loading="lazy" /><figcaption>Thoughtful design, made useful.</figcaption><span className="image-corner" aria-hidden="true"><ArrowUpRight /></span></figure>
+        <figure className="solution-image"><img src={current.image} alt={current.imageAlt} loading="lazy" /><figcaption>Thoughtful design, made useful.</figcaption><span className="image-corner" aria-hidden="true"><ArrowUpRight /></span></figure>
       </article>
     </div>
   </section>;

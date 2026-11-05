@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://getvout.com/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url><loc>https://getvout.com/services</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://getvout.com/services/websites-platforms</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://getvout.com/services/products-applications</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://getvout.com/services/ai-automation</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://getvout.com/services/digital-strategy</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://getvout.com/work</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://getvout.com/work/talscout</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://getvout.com/work/jac-creation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://getvout.com/studio</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://getvout.com/contact</loc><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://getvout.com/</loc></url>
+  <url><loc>https://getvout.com/services</loc></url>
+  <url><loc>https://getvout.com/services/websites-platforms</loc></url>
+  <url><loc>https://getvout.com/services/products-applications</loc></url>
+  <url><loc>https://getvout.com/services/ai-automation</loc></url>
+  <url><loc>https://getvout.com/services/digital-strategy</loc></url>
+  <url><loc>https://getvout.com/work</loc></url>
+  <url><loc>https://getvout.com/work/talscout</loc></url>
+  <url><loc>https://getvout.com/work/jac-creation</loc></url>
+  <url><loc>https://getvout.com/studio</loc></url>
+  <url><loc>https://getvout.com/contact</loc></url>
 </urlset>

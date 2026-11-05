@@ -6,6 +6,10 @@ const root = process.cwd();
 const client = path.join(root, "dist", "client");
 const template = readFileSync(path.join(client, "index.html"), "utf8");
 const content = {
+  "/": {
+    intro: "Getvout is an independent digital studio in India. We design and build business websites, web applications, and practical AI workflows for teams everywhere.",
+    links: [["Website design and development", "/services/websites-platforms"], ["Digital products and applications", "/services/products-applications"], ["AI and workflow automation", "/services/ai-automation"], ["Selected work", "/work"], ["About the studio", "/studio"], ["Start a conversation", "/contact"]],
+  },
   "/services": {
     intro: "We bring strategy, design, and engineering together around the job your business needs done.",
     links: [["Websites & platforms", "/services/websites-platforms"], ["Products & applications", "/services/products-applications"], ["AI & automation", "/services/ai-automation"], ["Strategy & experience", "/services/digital-strategy"]],
@@ -51,6 +55,7 @@ const content = {
 const escapeHtml = (value) => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
 const safeJson = (value) => JSON.stringify(value).replaceAll("<", "\\u003c");
 const labels = {
+  "/": "Home",
   "/services": "Services",
   "/services/websites-platforms": "Website Design & Development",
   "/services/products-applications": "Products & Applications",
@@ -64,6 +69,7 @@ const labels = {
 };
 
 function breadcrumbItems(route) {
+  if (route === "/") return [];
   if (route.startsWith("/services/")) return [["Home", "/"], ["Services", "/services"], [labels[route], route]];
   if (route.startsWith("/work/")) return [["Home", "/"], ["Selected Work", "/work"], [labels[route], route]];
   return [["Home", "/"], [labels[route], route]];
@@ -73,9 +79,28 @@ for (const [route, data] of Object.entries(content)) {
   const seo = seoRoutes[route];
   const canonical = `https://getvout.com${route}`;
   const breadcrumbs = breadcrumbItems(route);
-  const breadcrumbNav = breadcrumbs.map(([label, href]) => `<a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join("<span aria-hidden=\"true\"> / </span>");
+  const breadcrumbNav = breadcrumbs.length > 1 ? `<nav aria-label="Breadcrumb">${breadcrumbs.map(([label, href]) => `<a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join("<span aria-hidden=\"true\"> / </span>")}</nav>` : "";
   const linkList = data.links.map(([label, href]) => `<li><a href="${escapeHtml(href)}">${escapeHtml(label)}</a></li>`).join("");
+  const organization = {
+    "@type": "Organization",
+    "@id": "https://getvout.com/#organization",
+    name: "getvout",
+    url: "https://getvout.com/",
+    logo: { "@type": "ImageObject", url: "https://getvout.com/getvout-icon-512.png", width: 512, height: 512 },
+    email: "helo@getvout.com",
+    description: "An independent digital studio building websites, AI-powered products, and digital experiences.",
+  };
+  const website = {
+    "@type": "WebSite",
+    "@id": "https://getvout.com/#website",
+    url: "https://getvout.com/",
+    name: "getvout",
+    publisher: { "@id": "https://getvout.com/#organization" },
+    inLanguage: "en",
+  };
   const schemaGraph = [
+    organization,
+    website,
     {
       "@type": "WebPage",
       "@id": `${canonical}#webpage`,
@@ -87,10 +112,10 @@ for (const [route, data] of Object.entries(content)) {
       about: { "@id": "https://getvout.com/#organization" },
       primaryImageOfPage: { "@type": "ImageObject", url: "https://getvout.com/images/getvout-social-card.png" },
     },
-    {
+    ...(breadcrumbs.length > 1 ? [{
       "@type": "BreadcrumbList",
       itemListElement: breadcrumbs.map(([name, url], index) => ({ "@type": "ListItem", position: index + 1, name, item: `https://getvout.com${url === "/" ? "/" : url}` })),
-    },
+    }] : []),
   ];
   if (route.startsWith("/services/")) {
     const serviceType = {
@@ -99,10 +124,10 @@ for (const [route, data] of Object.entries(content)) {
       "/services/ai-automation": "AI integration and workflow automation",
       "/services/digital-strategy": "Digital strategy and user experience design",
     }[route];
-    schemaGraph[0].mainEntity = { "@type": "Service", name: labels[route], serviceType, provider: { "@id": "https://getvout.com/#organization" }, url: canonical, description: seo.description };
+    schemaGraph.find((item) => item["@type"] === "WebPage").mainEntity = { "@type": "Service", name: labels[route], serviceType, provider: { "@id": "https://getvout.com/#organization" }, url: canonical, description: seo.description };
   }
   const schema = { "@context": "https://schema.org", "@graph": schemaGraph };
-  const snapshot = `<main class="page-prerender" id="main"><nav aria-label="Breadcrumb">${breadcrumbNav}</nav><article><p>Independent digital studio · Working everywhere</p><h1>${escapeHtml(seo.title)}</h1><p>${escapeHtml(data.intro)}</p><p>${escapeHtml(seo.description)}</p><h2>Explore more</h2><ul>${linkList}</ul></article></main>`;
+  const snapshot = `<main class="page-prerender" id="main">${breadcrumbNav}<article><p>Independent digital studio · Working everywhere</p><h1>${escapeHtml(seo.title)}</h1><p>${escapeHtml(data.intro)}</p><p>${escapeHtml(seo.description)}</p><h2>${route === "/" ? "Explore Getvout" : "Explore more"}</h2><ul>${linkList}</ul></article></main>`;
   let html = template
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(seo.titleTag)}</title>`)
     .replace(/<meta name="description" content="[^"]*"\s*\/>/, `<meta name="description" content="${escapeHtml(seo.description)}" />`)
@@ -114,7 +139,7 @@ for (const [route, data] of Object.entries(content)) {
     .replace(/<meta name="twitter:description" content="[^"]*"\s*\/>/, `<meta name="twitter:description" content="${escapeHtml(seo.description)}" />`)
     .replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, `<script type="application/ld+json">${safeJson(schema)}</script>`)
     .replace('<div id="root"></div>', `<div id="root"></div>${snapshot}`);
-  const destination = path.join(client, route.slice(1), "index.html");
+  const destination = route === "/" ? path.join(client, "index.html") : path.join(client, route.slice(1), "index.html");
   mkdirSync(path.dirname(destination), { recursive: true });
   writeFileSync(destination, html);
 }
