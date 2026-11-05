@@ -141,6 +141,7 @@ for (const [route, data] of Object.entries(content)) {
   let html = template
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(seo.titleTag)}</title>`)
     .replace(/<meta name="description" content="[^"]*"\s*\/>/, `<meta name="description" content="${escapeHtml(seo.description)}" />`)
+    .replace(/<meta name="robots" content="[^"]*"\s*\/>/, `<meta name="robots" content="${escapeHtml(seo.robots || "index, follow, max-image-preview:large")}" />`)
     .replace(/<link rel="canonical" href="[^"]*"\s*\/>/, `<link rel="canonical" href="${canonical}" />`)
     .replace(/<meta property="og:title" content="[^"]*"\s*\/>/, `<meta property="og:title" content="${escapeHtml(seo.titleTag)}" />`)
     .replace(/<meta property="og:description" content="[^"]*"\s*\/>/, `<meta property="og:description" content="${escapeHtml(seo.description)}" />`)

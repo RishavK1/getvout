@@ -145,6 +145,8 @@ function updateMetadata(page, route) {
   const description = page.description;
   let meta = document.querySelector('meta[name="description"]');
   if (meta) meta.setAttribute("content", description);
+  let robots = document.querySelector('meta[name="robots"]');
+  if (robots) robots.setAttribute("content", page.robots || "index, follow, max-image-preview:large");
   let canonical = document.querySelector('link[rel="canonical"]');
   if (canonical) canonical.setAttribute("href", `https://getvout.com${route === "/" ? "/" : route}`);
   let ogTitle = document.querySelector('meta[property="og:title"]');

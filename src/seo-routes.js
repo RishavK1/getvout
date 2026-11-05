@@ -60,11 +60,13 @@ const seoRoutes = {
     title: "Privacy, explained in plain language.",
     titleTag: "Privacy Policy | Getvout",
     description: "Read how Getvout handles information when you visit getvout.com or choose to contact the studio by email or WhatsApp.",
+    robots: "noindex, follow",
   },
   "/terms-and-conditions": {
     title: "Clear terms for using Getvout.",
     titleTag: "Terms and Conditions | Getvout",
     description: "Review the terms for using getvout.com, including site content, external links, and separate agreements for project work.",
+    robots: "noindex, follow",
   },
 };
 
