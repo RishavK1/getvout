@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {
   ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, BracketsCurly, Check,
   CheckCircle, Code, CursorClick, EnvelopeSimple, List, MagnifyingGlass,
-  Play, Sparkle, X,
+  Play, Sparkle, WhatsappLogo, X,
 } from "@phosphor-icons/react";
 
 const projects = [
@@ -265,10 +265,18 @@ function Contact() {
 export function Footer() {
   return <footer className="site-footer"><div className="footer-cta section-shell" data-reveal><div><p className="eyebrow">10 / Here for what’s next</p><h2>Got something<br />to <em>make?</em></h2></div><div><p>Websites, products, and digital experiences with a little more thought behind them.</p><a className="button button-lime" href="/contact">Tell us about it <ArrowUpRight /></a></div><span className="footer-orbit footer-orbit--one" /><span className="footer-orbit footer-orbit--two" /></div>
     <div className="footer-main section-shell"><div className="footer-brand"><Wordmark footer /><p>Independent digital studio<br />Working everywhere.</p><a href="mailto:helo@getvout.com">helo@getvout.com <ArrowUpRight /></a></div><div className="footer-columns"><div><span className="eyebrow">Explore</span><a href="/services">All services</a><a href="/work">Selected work</a><a href="/#approach">Our approach</a><a href="/studio">The studio</a></div><div><span className="eyebrow">Capabilities</span><a href="/services/websites-platforms">Websites & platforms</a><a href="/services/products-applications">Products & applications</a><a href="/services/ai-automation">AI & automation</a><a href="/services/digital-strategy">Strategy & experience</a></div><div><span className="eyebrow">Say hello</span><a href="mailto:helo@getvout.com">Email the studio <ArrowUpRight /></a><a href="/contact">Start a conversation <ArrowUpRight /></a></div></div></div>
-    <div className="footer-bottom section-shell"><span>© {new Date().getFullYear()} Getvout</span><span>Thoughtful work, made real.</span><a href="/">Back to home <ArrowUpRight /></a></div></footer>;
+    <div className="footer-bottom section-shell"><span>© {new Date().getFullYear()} Getvout</span><span>Thoughtful work, made real.</span><nav className="footer-legal-links" aria-label="Legal"><a href="/privacy-policy">Privacy policy</a><a href="/terms-and-conditions">Terms and conditions</a></nav><a href="/">Back to home <ArrowUpRight /></a></div></footer>;
+}
+
+export function FloatingWhatsApp() {
+  const phone = "917404511743";
+  const message = encodeURIComponent("Hi Getvout, I’d like to start a conversation.");
+  return <a className="whatsapp-float" href={`https://wa.me/${phone}?text=${message}`} target="_blank" rel="noopener noreferrer" aria-label="Chat with Getvout on WhatsApp at +91 74045 11743">
+    <WhatsappLogo weight="fill" aria-hidden="true" /><span>Chat on WhatsApp</span>
+  </a>;
 }
 
 export function App() {
   usePageMotion();
-  return <><a className="skip-link" href="#main">Skip to content</a><div className="scroll-progress" aria-hidden="true" /><Header /><main id="main"><Hero /><WorkRibbon /><Solutions /><Portfolio /><Stories /><Approach /><WhyGetvout /><Studio /><Journal /><Contact /></main><Footer /></>;
+  return <><a className="skip-link" href="#main">Skip to content</a><div className="scroll-progress" aria-hidden="true" /><Header /><main id="main"><Hero /><WorkRibbon /><Solutions /><Portfolio /><Stories /><Approach /><WhyGetvout /><Studio /><Journal /><Contact /></main><Footer /><FloatingWhatsApp /></>;
 }

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { ArrowDown, ArrowUpRight, Check, CheckCircle, Compass, Sparkle } from "@phosphor-icons/react";
-import { Header, Footer } from "./App.jsx";
+import { Header, Footer, FloatingWhatsApp } from "./App.jsx";
 import seoRoutes from "./seo-routes.js";
 
 const pages = {
@@ -94,6 +94,34 @@ const pages = {
     eyebrow: "Contact / Start with a simple hello", image: "/images/getvout-hero-art.webp", alt: "Getvout’s cobalt and lime visual identity",
     intro: "No big pitch needed. A few lines about what you’re working on are enough to start a useful conversation.",
   },
+  "/privacy-policy": {
+    ...seoRoutes["/privacy-policy"], kind: "legal", eyebrow: "Getvout / Privacy policy", updated: "5 November 2026",
+    intro: "This notice explains what information is handled when you browse getvout.com or choose to contact Getvout.",
+    sections: [
+      { title: "Who this notice covers", paragraphs: ["Getvout is an independent digital studio based in India. This notice applies to getvout.com and to messages you choose to send to the studio through the contact links on this site."] },
+      { title: "Information you choose to share", paragraphs: ["If you email or message us, we may receive the name, email address, phone number, business details, project information, and any attachments you include. Please avoid sending sensitive personal information unless it is necessary for your enquiry.", "The website contact form opens a message in your own email application. The form does not send its contents to a Getvout server; information reaches us only if you choose to send that email."] },
+      { title: "Information used to operate the site", paragraphs: ["The hosting and security services that deliver this website may process technical request information, such as an IP address, requested page, browser or device details, timestamps, and security diagnostics. This helps deliver the site, prevent abuse, and troubleshoot errors.", "The current site implementation does not install Getvout analytics or advertising pixels, and does not use its own advertising or analytics cookies."] },
+      { title: "Why we use information", paragraphs: ["We use messages you send to answer your enquiry, discuss possible work, prepare a proposal when requested, and keep necessary business records. Technical request data is used to operate and protect the website."] },
+      { title: "Service providers and external links", paragraphs: ["We share information only where needed to operate the site or respond to you, such as with website hosting, security, email, or communication providers, and where the law requires it. We do not sell personal information submitted to Getvout.", "If you choose the WhatsApp button, you will be taken to WhatsApp. WhatsApp and its related services are provided by Meta and handle information under their own terms and privacy notices. Other linked sites also have their own policies; review them before sharing information there."] },
+      { title: "Retention and security", paragraphs: ["We keep correspondence only for as long as reasonably needed to respond, manage a business relationship, maintain necessary records, or meet legal and security needs. Hosting providers may retain technical logs under their own retention practices.", "We use reasonable measures to protect information we control. No internet transmission or storage method can be guaranteed completely secure."] },
+      { title: "Your choices and requests", paragraphs: ["Depending on the law that applies to you, you may be able to ask us to access, correct, or erase personal information, or raise a concern about its use. Email helo@getvout.com with the subject “Privacy request”; we may ask for enough information to confirm which correspondence you mean and will respond as required by applicable law."] },
+      { title: "Changes and contact", paragraphs: ["We may update this notice when site practices change. The date at the top shows when it was last reviewed. For privacy questions, email helo@getvout.com."] },
+    ],
+  },
+  "/terms-and-conditions": {
+    ...seoRoutes["/terms-and-conditions"], kind: "legal", eyebrow: "Getvout / Terms and conditions", updated: "5 November 2026",
+    intro: "These terms cover your use of getvout.com. Any project we agree to deliver will have its own scope and written agreement.",
+    sections: [
+      { title: "Using this website", paragraphs: ["You may browse and use this site for lawful purposes. Do not interfere with its operation, attempt unauthorized access, distribute malicious code, or copy or misuse site content in a way that violates another person’s rights."] },
+      { title: "Information about services", paragraphs: ["The site describes Getvout’s capabilities and examples of work. It is general information, not a binding offer, quote, or promise that a particular service, schedule, or outcome is available. Project scope, fees, timing, deliverables, ownership, and support are agreed separately in writing before work begins."] },
+      { title: "Projects and illustrative material", paragraphs: ["Some portfolio items or visuals may be concepts or illustrative material; descriptions identify them where relevant. Examples are shown to explain the work and are not a guarantee of results or an endorsement by another party."] },
+      { title: "Ownership and permitted use", paragraphs: ["Getvout or its licensors retain rights in the site’s original text, design, graphics, and code. You may view the site and share links to it. Reuse, republication, or commercial use of site materials requires permission from the relevant rights holder.", "Third-party names, marks, images, and project materials remain the property of their respective owners. Nothing on this site transfers ownership of those materials."] },
+      { title: "Messages and third-party services", paragraphs: ["When you send an enquiry, you confirm that you are entitled to share the information and files in it. The email and WhatsApp links open services operated by third parties; their availability and terms are outside Getvout’s control."] },
+      { title: "Availability and responsibility", paragraphs: ["We aim to keep the site useful and available, but may change, suspend, or remove content without notice. The site is provided for general information. To the extent permitted by law, Getvout is not responsible for indirect loss arising from use of the site or reliance on general website information. Nothing in these terms limits liability that cannot lawfully be limited."] },
+      { title: "Applicable law and updates", paragraphs: ["These terms are governed by the laws of India, subject to mandatory protections that apply where you live. Courts with appropriate jurisdiction in India may hear disputes, unless applicable law requires another forum. We may update these terms by publishing a revised version here; the date at the top shows the latest review."] },
+      { title: "Contact", paragraphs: ["Questions about these terms? Email helo@getvout.com."] },
+    ],
+  },
 };
 
 const projects = [
@@ -134,6 +162,11 @@ function updateMetadata(page, route) {
 }
 
 function PageHero({ page, route }) {
+  if (page.kind === "legal") return <section className="legal-hero page-shell" data-reveal>
+    <nav className="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>{page.eyebrow.split(" / ").at(-1)}</span></nav>
+    <p className="eyebrow page-eyebrow">{page.eyebrow}</p>
+    <div className="legal-hero-grid"><h1>{page.title}</h1><div><p className="inner-hero-intro">{page.intro}</p><span className="legal-updated">Last updated {page.updated}</span></div></div>
+  </section>;
   return <section className="inner-hero page-shell" data-reveal>
     <div className="inner-hero-copy"><nav className="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>{page.eyebrow.split(" / ").at(-1)}</span></nav><p className="eyebrow page-eyebrow">{page.eyebrow}</p><h1>{page.title}</h1><p className="inner-hero-intro">{page.intro}</p><div className="inner-hero-actions"><a className="button button-dark" href="/contact">Start a conversation <ArrowUpRight /></a>{page.kind !== "contact" && <a className="button button-outline" href="#page-content">Explore this page <ArrowDown /></a>}</div></div>
     <figure className="inner-hero-visual"><img src={page.image} alt={page.alt} fetchPriority="high" /><figcaption><span>GETVOUT / {page.kind === "case" ? "PROJECT" : page.kind.toUpperCase()}</span><span>INDEPENDENT DIGITAL STUDIO</span></figcaption></figure>
@@ -186,6 +219,17 @@ function ContactContent() {
   return <section className="contact-page-content page-shell" id="page-content"><div className="contact-page-note" data-reveal><span className="principle-icon"><Sparkle /></span><p className="eyebrow">GETVOUT / CONTACT</p><h2>Start with a<br /><em>simple hello.</em></h2><p>Share a little about your goals, timeline, or the challenge you’re working through. We’ll reply by email and help identify a practical next step.</p><a className="text-link" href="mailto:helo@getvout.com?subject=Project%20conversation%20with%20Getvout">helo@getvout.com <ArrowUpRight /></a></div><form className="contact-page-form" action="mailto:helo@getvout.com" method="post" encType="text/plain" data-reveal><label>Your name<input name="Name" autoComplete="name" placeholder="Name" required /></label><label>Email address<input name="Email" type="email" autoComplete="email" placeholder="you@company.com" required /></label><label>What would you like to make?<textarea name="Project" rows="5" placeholder="A few lines about your project or idea" required /></label><button className="button button-dark" type="submit">Email the studio <ArrowUpRight /></button><small>This opens your email app so you can review the message before sending.</small></form></section>;
 }
 
+function LegalContent({ page }) {
+  return <article className="legal-content page-shell" id="page-content">
+    <div className="legal-content-intro"><span>Plain-language information for visitors to getvout.com</span><a href="mailto:helo@getvout.com">Questions? Email us <ArrowUpRight /></a></div>
+    <div className="legal-sections">{page.sections.map((section, index) => <section className="legal-section" key={section.title} data-reveal>
+      <span className="legal-section-number">{String(index + 1).padStart(2, "0")}</span>
+      <div><h2>{section.title}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+    </section>)}</div>
+    <div className="legal-contact"><span>Need to ask us something?</span><a href={`mailto:helo@getvout.com?subject=${encodeURIComponent(page.kind === "legal" && page.eyebrow.includes("Privacy") ? "Privacy request" : "Question about Getvout terms")}`}>Email helo@getvout.com <ArrowUpRight /></a></div>
+  </article>;
+}
+
 function PageContent({ page }) {
   if (page.kind === "services") return <ServiceCards />;
   if (page.kind === "work") return <WorkGrid />;
@@ -193,6 +237,7 @@ function PageContent({ page }) {
   if (page.kind === "case") return <CaseStudy page={page} />;
   if (page.kind === "studio") return <StudioContent />;
   if (page.kind === "contact") return <ContactContent />;
+  if (page.kind === "legal") return <LegalContent page={page} />;
   return null;
 }
 
@@ -208,7 +253,7 @@ export function MarketingPage({ path }) {
     return () => observer.disconnect();
   }, [page, path]);
 
-  return <><a className="skip-link" href="#page-content">Skip to content</a><div className="scroll-progress" aria-hidden="true" /><Header /><main id="main"><PageHero page={page} route={path} /><PageContent page={page} /><section className="inner-cta page-shell" data-reveal><div><p className="eyebrow">Have something in mind?</p><h2>Let’s make the<br /><em>next step clear.</em></h2></div><a className="button button-lime" href="/contact">Talk to Getvout <ArrowUpRight /></a></section></main><Footer /></>;
+  return <><a className="skip-link" href="#page-content">Skip to content</a><div className="scroll-progress" aria-hidden="true" /><Header /><main id="main"><PageHero page={page} route={path} /><PageContent page={page} />{page.kind !== "legal" && <section className="inner-cta page-shell" data-reveal><div><p className="eyebrow">Have something in mind?</p><h2>Let’s make the<br /><em>next step clear.</em></h2></div><a className="button button-lime" href="/contact">Talk to Getvout <ArrowUpRight /></a></section>}</main><Footer /><FloatingWhatsApp /></>;
 }
 
 export const marketingRoutes = Object.keys(pages);

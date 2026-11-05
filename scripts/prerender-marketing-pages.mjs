@@ -50,6 +50,14 @@ const content = {
     intro: "No big pitch needed. A few lines about what you’re working on are enough to start a useful conversation.",
     links: [["Email Getvout", "mailto:helo@getvout.com"]],
   },
+  "/privacy-policy": {
+    intro: "A plain-language explanation of what information this site uses when you browse or contact Getvout, and how to reach us about it.",
+    links: [["Contact Getvout about privacy", "mailto:helo@getvout.com?subject=Privacy%20request"], ["Terms and conditions", "/terms-and-conditions"]],
+  },
+  "/terms-and-conditions": {
+    intro: "These terms cover your use of getvout.com. A separate written proposal or project agreement applies to any work we agree to deliver.",
+    links: [["Contact Getvout", "mailto:helo@getvout.com"], ["Privacy policy", "/privacy-policy"]],
+  },
 };
 
 const escapeHtml = (value) => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
@@ -66,6 +74,8 @@ const labels = {
   "/work/jac-creation": "JAC Creation",
   "/studio": "Studio",
   "/contact": "Contact",
+  "/privacy-policy": "Privacy Policy",
+  "/terms-and-conditions": "Terms and Conditions",
 };
 
 function breadcrumbItems(route) {
@@ -138,7 +148,7 @@ for (const [route, data] of Object.entries(content)) {
     .replace(/<meta name="twitter:title" content="[^"]*"\s*\/>/, `<meta name="twitter:title" content="${escapeHtml(seo.titleTag)}" />`)
     .replace(/<meta name="twitter:description" content="[^"]*"\s*\/>/, `<meta name="twitter:description" content="${escapeHtml(seo.description)}" />`)
     .replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, `<script type="application/ld+json">${safeJson(schema)}</script>`)
-    .replace('<div id="root"></div>', `<div id="root"></div>${snapshot}`);
+    .replace("</body>", `<noscript>${snapshot}</noscript></body>`);
   const destination = route === "/" ? path.join(client, "index.html") : path.join(client, route.slice(1), "index.html");
   mkdirSync(path.dirname(destination), { recursive: true });
   writeFileSync(destination, html);

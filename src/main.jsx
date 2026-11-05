@@ -8,7 +8,6 @@ import "./estate-demo.css";
 
 const path = window.location.pathname.replace(/\/$/, "") || "/";
 const isMarketingPage = marketingRoutes.includes(path);
-document.querySelector(".page-prerender")?.remove();
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>

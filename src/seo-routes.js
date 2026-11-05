@@ -56,6 +56,16 @@ const seoRoutes = {
     titleTag: "Contact Getvout | Start a Project Conversation",
     description: "Start a project conversation with Getvout. Share your business, product, or idea and we’ll help identify a useful next step.",
   },
+  "/privacy-policy": {
+    title: "Privacy, explained in plain language.",
+    titleTag: "Privacy Policy | Getvout",
+    description: "Read how Getvout handles information when you visit getvout.com or choose to contact the studio by email or WhatsApp.",
+  },
+  "/terms-and-conditions": {
+    title: "Clear terms for using Getvout.",
+    titleTag: "Terms and Conditions | Getvout",
+    description: "Review the terms for using getvout.com, including site content, external links, and separate agreements for project work.",
+  },
 };
 
 export default seoRoutes;
