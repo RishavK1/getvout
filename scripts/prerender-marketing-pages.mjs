@@ -50,6 +50,10 @@ const content = {
     intro: "No big pitch needed. A few lines about what you’re working on are enough to start a useful conversation.",
     links: [["Email Getvout", "mailto:helo@getvout.com"]],
   },
+  "/tools/french-drain-calculator": {
+    intro: "An interactive, client-side material takeoff and cost estimation software tool built by GetVout for homeowners, civil excavators, and landscaping contractors.",
+    links: [["French Drain Material & Gravel Calculator", "https://frenchdrain.getvout.com/"], ["French Drain Cost Estimator (DIY vs Pro)", "https://frenchdrain.getvout.com/cost-estimator"], ["Yard Drainage Slope & Fall Calculator", "https://frenchdrain.getvout.com/slope-calculator"], ["Drainage Gravel & Geotextile Guide", "https://frenchdrain.getvout.com/materials-guide"], ["French Drain Installation Checklist", "https://frenchdrain.getvout.com/installation-guide"]],
+  },
   "/privacy-policy": {
     intro: "A plain-language explanation of what information this site uses when you browse or contact Getvout, and how to reach us about it.",
     links: [["Contact Getvout about privacy", "mailto:helo@getvout.com?subject=Privacy%20request"], ["Terms and conditions", "/terms-and-conditions"]],
@@ -74,6 +78,7 @@ const labels = {
   "/work/jac-creation": "JAC Creation",
   "/studio": "Studio",
   "/contact": "Contact",
+  "/tools/french-drain-calculator": "French Drain Pro",
   "/privacy-policy": "Privacy Policy",
   "/terms-and-conditions": "Terms and Conditions",
 };
@@ -99,6 +104,13 @@ for (const [route, data] of Object.entries(content)) {
     logo: { "@type": "ImageObject", url: "https://getvout.com/getvout-icon-512.png", width: 512, height: 512 },
     email: "helo@getvout.com",
     description: "An independent digital studio building websites, AI-powered products, and digital experiences.",
+    hasPart: {
+      "@type": "WebApplication",
+      name: "French Drain Pro Calculator",
+      url: "https://frenchdrain.getvout.com/",
+      applicationCategory: "UtilitiesApplication",
+      creator: { "@id": "https://getvout.com/#organization" },
+    },
   };
   const website = {
     "@type": "WebSite",
@@ -135,6 +147,17 @@ for (const [route, data] of Object.entries(content)) {
       "/services/digital-strategy": "Digital strategy and user experience design",
     }[route];
     schemaGraph.find((item) => item["@type"] === "WebPage").mainEntity = { "@type": "Service", name: labels[route], serviceType, provider: { "@id": "https://getvout.com/#organization" }, url: canonical, description: seo.description };
+  }
+  if (route === "/tools/french-drain-calculator") {
+    schemaGraph.find((item) => item["@type"] === "WebPage").mainEntity = {
+      "@type": "WebApplication",
+      name: "French Drain Pro Calculator",
+      applicationCategory: "UtilitiesApplication",
+      operatingSystem: "Any",
+      url: "https://frenchdrain.getvout.com/",
+      creator: { "@id": "https://getvout.com/#organization" },
+      description: seo.description,
+    };
   }
   const schema = { "@context": "https://schema.org", "@graph": schemaGraph };
   const snapshot = `<main class="page-prerender" id="main">${breadcrumbNav}<article><p>Independent digital studio · Working everywhere</p><h1>${escapeHtml(seo.title)}</h1><p>${escapeHtml(data.intro)}</p><p>${escapeHtml(seo.description)}</p><h2>${route === "/" ? "Explore Getvout" : "Explore more"}</h2><ul>${linkList}</ul></article></main>`;

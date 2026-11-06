@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { App } from "./App.jsx";
 import { EstateDemo } from "./EstateDemo.jsx";
 import { MarketingPage, marketingRoutes } from "./MarketingPages.jsx";
+import { FrenchDrainToolPage } from "./FrenchDrainToolPage.jsx";
 import "./styles.css";
 import "./estate-demo.css";
 
@@ -11,6 +12,8 @@ const isMarketingPage = marketingRoutes.includes(path);
 
 const app = window.location.pathname.startsWith("/estate-demo") || window.location.hostname === "aurelia.getvout.com"
   ? <EstateDemo />
+  : path === "/tools/french-drain-calculator"
+    ? <FrenchDrainToolPage />
   : isMarketingPage
     ? <MarketingPage path={path} />
     : <App />;

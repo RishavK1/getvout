@@ -56,6 +56,11 @@ const seoRoutes = {
     titleTag: "Contact Getvout | Start a Project Conversation",
     description: "Start a project conversation with Getvout. Share your business, product, or idea and we’ll help identify a useful next step.",
   },
+  "/tools/french-drain-calculator": {
+    title: "French Drain Pro, planned with precision.",
+    titleTag: "French Drain Pro | Precision Civil & Yard Drainage Engineering Engine",
+    description: "An interactive, client-side material takeoff and cost estimation software tool built by GetVout for homeowners, civil excavators, and landscaping contractors.",
+  },
   "/privacy-policy": {
     title: "Privacy, explained in plain language.",
     titleTag: "Privacy Policy | Getvout",
